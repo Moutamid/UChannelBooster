@@ -51,11 +51,13 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(remoteMessage.getNotification().getBody()));
         builder.setAutoCancel(true);
         builder.setPriority(2);
+
         this.mNotificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);//"notification"
         if (Build.VERSION.SDK_INT >= 26) {
             this.mNotificationManager.createNotificationChannel(new NotificationChannel("Your_channel_id", "Channel human readable title", NotificationManager.IMPORTANCE_HIGH));//4
             builder.setChannelId("Your_channel_id");
         }
+
         this.mNotificationManager.notify(100, builder.build());
     }
 }
