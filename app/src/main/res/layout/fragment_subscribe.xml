@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.subscribe.SubscribeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/toplayoutlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="7dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/video_image_subscribe"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop" />
+
+
+            <TextView
+                android:id="@+id/videoId_subscribe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:text="Video Id: kadhgjasg87"
+                android:textColor="@color/black"
+                android:textIsSelectable="true"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/autoPlaySwitchSubscribe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toplayoutlayout"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/auto_playy"
+        android:textColor="@color/black"
+        android:theme="@style/SelectionSwitch" />
+    <!--app:thumbTint="@color/red"
+    app:trackTint="#99FF3E3E" />-->
+
+    <LinearLayout
+        android:id="@+id/bottomLayoutSubscribe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/subscribeBtnSubscribeActivity"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            app:iconSize="20dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="@string/subscribe"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            app:backgroundTint="@color/red"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/youtube"
+            app:iconGravity="start" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/seeNextBtnSubscribe"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:text="@string/see_next"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/outputTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="mnmn  " />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayoutSubscribe"
+        android:layout_below="@+id/autoPlaySwitchSubscribe"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="2000"
+            app:iss_period="2000"
+            app:iss_selected_dot="@drawable/selected_dot"
+            app:iss_title_background="@color/transparent"
+            app:iss_unselected_dot="@drawable/unselected_dot" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/sliderLayoutSubscribe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayoutSubscribe"
+        android:layout_below="@+id/autoPlaySwitchSubscribe" />
+
+</RelativeLayout>

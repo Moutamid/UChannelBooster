@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.like.LikeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/toplayoutlayoutt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="7dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/video_image_like"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/videoId_like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:text="Video Id: kadhgjasg87"
+                android:textColor="@color/black"
+                android:textIsSelectable="true"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/autoPlaySwitch_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toplayoutlayoutt"
+        android:layout_gravity="end"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/auto_playy"
+        android:textColor="@color/black"
+        android:theme="@style/SelectionSwitch" />
+    <!--app:thumbTint="@color/red"
+    app:trackTint="#99FF3E3E" />-->
+    <!--app:thumbTint="@color/accentColor"
+    app:trackTint="@color/lighterRed" />-->
+
+    <LinearLayout
+        android:id="@+id/bottomLayout_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/like_btn_like_activity"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="@string/likee"
+            android:textColor="@color/white"
+            app:iconSize="20dp"
+            app:icon="@drawable/youtube"
+            android:textSize="13sp"
+            app:backgroundTint="@color/red"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/seeNextBtn_like"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:text="@string/see_next"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/outputTextView_like"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="mnmn  " />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayout_like"
+        android:layout_below="@+id/autoPlaySwitch_like"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_sliderLike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:iss_auto_cycle="true"
+            app:iss_delay="2000"
+            app:iss_period="2000"
+            app:iss_selected_dot="@drawable/selected_dot"
+            app:iss_title_background="@color/transparent"
+            app:iss_unselected_dot="@drawable/unselected_dot" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/sliderLayoutLike"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayout_like"
+        android:layout_below="@+id/autoPlaySwitch_like" />
+
+</RelativeLayout>

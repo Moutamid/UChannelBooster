@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".ui.campaign.CampaignFragment">
+    <!--android:background="#EEF4FA"-->
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <EditText
+            android:id="@+id/youtube_video_url_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="Input Youtube video url" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:id="@+id/addTaskButton"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/darkerGrey"
+            android:text="add" />
+
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/noChatsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="304dp"
+            android:layout_height="194dp"
+            android:src="@drawable/ic_error_image" />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_campaign"
+            android:textColor="@color/black" />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/your_campaign_appears_here_click_add_button_to_create_campaign_to_get_subscribers_for_your_channel" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="#EEF4FA"
+            android:visibility="gone"
+            tools:itemCount="5"
+            tools:listitem="@layout/layout_task_home" />
+
+    </androidx.core.widget.NestedScrollView>
+    <!--
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/likeTaskBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/addBtnShowTasks"
+            android:layout_marginBottom="-10dp"
+            android:layout_toStartOf="@+id/viewTaskBtn"
+            android:src="@drawable/ic_baseline_thumb_up_alt_24"
+            android:visibility="gone"
+            app:backgroundTint="@color/red"
+            app:fabSize="mini"
+            app:tint="@color/white" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/subscribeTaskBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_toStartOf="@id/addBtnShowTasks"
+            android:src="@drawable/ic_baseline_group_add_24"
+            android:visibility="gone"
+            app:backgroundTint="@color/red"
+            app:fabSize="mini"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/viewTaskBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/addBtnShowTasks"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_baseline_play_arrow_24"
+            android:visibility="gone"
+            app:backgroundTint="@color/red"
+            app:fabSize="mini"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addBtnShowTasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_baseline_add_24"
+            app:backgroundTint="@color/red"
+            app:fabSize="normal"
+            app:tint="@color/white" />
+    -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/viewTaskBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_play_view_other"
+                android:visibility="gone"
+                app:tint="@color/black" />
+
+            <ImageView
+                android:id="@+id/likeTaskBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_like_other"
+                android:visibility="gone"
+                app:tint="#A5A4A4" />
+
+            <ImageView
+                android:id="@+id/subscribeTaskBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_campaign_other"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/viewview"
+                android:layout_width="25dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/grey"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/addBtnShowTasks"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_add_24"
+                app:tint="@color/black" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

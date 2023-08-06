@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/parent_layout_task_home"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/youtube_thumbnail_imageview"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:src="@color/grey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@id/youtube_thumbnail_imageview"
+        android:layout_toRightOf="@id/youtube_thumbnail_imageview"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/done_time_textview_youtube"
+            android:layout_height="wrap_content"
+            android:text="complete:"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/watch_seconds_defined_textview_youtube"
+            android:layout_marginBottom="5dp"
+            android:text="Watch Seconds:60"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:visibility="invisible"
+                android:id="@+id/done_tick_imageview_youtube"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_baseline_check_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10/10 View"
+                android:layout_marginStart="5dp"
+                android:id="@+id/total_youtube_views_textview"
+                android:textSize="15sp"
+                android:layout_marginLeft="5dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

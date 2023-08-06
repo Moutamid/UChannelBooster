@@ -1,0 +1,104 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    namespace 'com.moutamid.uchannelbooster'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.moutamid.uchannelbooster"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.4'
+    implementation 'androidx.navigation:navigation-ui:2.3.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // FIREBASE MUST LIBRARY
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+
+    //FIREBASE GOOGLE SIGN IN AUTH
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+
+    //FIREBASE REALTIME DATABASE
+    implementation 'com.google.firebase:firebase-database'
+
+    implementation 'com.google.firebase:firebase-messaging'
+
+    implementation 'com.android.volley:volley:1.2.1'
+
+    // COUNT DOWN TIMER
+//    compile 'ir.samanjafari.easycountdowntimer:easycountdowntimer:2.5.0'
+
+    // Number picker
+    implementation 'com.shawnlin:number-picker:2.4.12'
+
+    // YouTube Player View
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.3'
+
+    // GLIDE LIBRARY
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // YOUTUBE DATA API LIBRARIES
+    implementation 'pub.devrel:easypermissions:0.3.0'
+    implementation('com.google.api-client:google-api-client-android:1.22.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    implementation('com.google.apis:google-api-services-youtube:v3-rev183-1.22.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+
+    def billing_version = "3.0.0"
+    implementation "com.android.billingclient:billing:$billing_version"
+
+    implementation 'androidx.preference:preference:1.2.1'
+
+    implementation 'com.anjlab.android.iab.v3:library:2.0.0'
+
+    implementation 'np.com.susanthapa:curved_bottom_navigation:0.6.5'
+
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+}

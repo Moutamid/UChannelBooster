@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_subscribe"
+        android:icon="@drawable/ic_baseline_subscriptions_24"
+        android:title="@string/subscribee" />
+
+    <item
+        android:id="@+id/navigation_like"
+        android:icon="@drawable/ic_baseline_thumb_up_alt_24"
+        android:title="@string/likee" />
+
+    <item
+        android:id="@+id/navigation_view"
+        android:icon="@drawable/ic_baseline_play_arrow_24"
+        android:title="@string/vieww" />
+
+
+    <item
+        android:id="@+id/navigation_campaign"
+        android:icon="@drawable/ic_baseline_campaign_24"
+        android:title="@string/campaignn" />
+
+    <item
+        android:id="@+id/navigation_points"
+        android:icon="@drawable/ic_money_points_24"
+        android:title="@string/pointss" />
+
+</menu>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/buy_points_nav_option"
+        android:icon="@drawable/ic_money_points_24"
+        android:title="@string/buy_pointss" />
+    <item
+        android:id="@+id/subscribe_nav_option"
+        android:icon="@drawable/ic_baseline_subscriptions_24"
+        android:title="@string/subscribee" />
+    <item
+        android:id="@+id/like_nav_option"
+        android:icon="@drawable/ic_baseline_thumb_up_alt_24"
+        android:title="@string/likee" />
+    <item
+        android:id="@+id/view_nav_option"
+        android:icon="@drawable/ic_baseline_play_arrow_24"
+        android:title="@string/vieww" />
+    <item
+        android:id="@+id/campaign_nav_option"
+        android:icon="@drawable/ic_baseline_campaign_24"
+        android:title="@string/campaigns" />
+    <item
+        android:id="@+id/privacy_policy_nav_option"
+        android:icon="@drawable/ic_baseline_privacy_tip_24"
+        android:title="@string/privacy_policy" />
+    <item
+        android:id="@+id/change_language_nav_option"
+        android:icon="@drawable/ic_baseline_language_24"
+        android:title="@string/language" />
+    <item
+        android:id="@+id/exit_nav_option"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="@string/logout" />
+
+</menu>

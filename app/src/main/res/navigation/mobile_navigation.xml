@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_subscribe">
+
+    <fragment
+        android:id="@+id/navigation_subscribe"
+        android:name="com.moutamid.uchannelbooster.ui.subscribe.SubscribeFragment"
+        android:label="Subscribe"
+        tools:layout="@layout/fragment_subscribe" />
+
+    <fragment
+        android:id="@+id/navigation_like"
+        android:name="com.moutamid.uchannelbooster.ui.like.LikeFragment"
+        android:label="Like"
+        tools:layout="@layout/fragment_like" />
+
+    <fragment
+        android:id="@+id/navigation_view"
+        android:name="com.moutamid.uchannelbooster.ui.view.ViewFragment"
+        android:label="View"
+        tools:layout="@layout/fragment_view" />
+
+    <fragment
+        android:id="@+id/navigation_campaign"
+        android:name="com.moutamid.uchannelbooster.ui.campaign.CampaignFragment"
+        android:label="Campaign"
+        tools:layout="@layout/fragment_campaign" />
+
+    <fragment
+        android:id="@+id/navigation_points"
+        android:name="com.moutamid.uchannelbooster.ui.points.PointsFragment"
+        android:label="Points"
+        tools:layout="@layout/fragment_points" />
+
+</navigation>

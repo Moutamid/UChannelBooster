@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.ViewFragment">
+    <!--    android:background="#EEF4FA"-->
+
+    <LinearLayout
+        android:id="@+id/toplayoutview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/toplayoutlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="7dp">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_fragment_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:enableAutomaticInitialization="true"
+                app:handleNetworkEvents="true"
+                app:showFullScreenButton="false" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/autoplay_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:padding="10dp"
+                android:text="@string/autoplayy"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:theme="@style/SelectionSwitch" />
+            <!--app:thumbTint="@color/red"
+            app:trackTint="#99FF3E3E" />-->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/turn_on_automatic_dialing_and_get_20_reduction_in_points"
+                android:textColor="@color/red"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_baseline_access_time_24_unfilled"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:id="@+id/current_sec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="60"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_money_points_24"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:id="@+id/current_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="60"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/other_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/watch_next"
+                app:icon="@drawable/youtube"
+                app:iconSize="20dp"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/red"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/image_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toplayoutview"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        app:iss_auto_cycle="true"
+        app:iss_delay="2000"
+        app:iss_period="2000"
+        app:iss_selected_dot="@drawable/selected_dot"
+        app:iss_title_background="@color/transparent"
+        app:iss_unselected_dot="@drawable/unselected_dot" />
+
+    <RelativeLayout
+        android:id="@+id/imageSliderLayoutView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toplayoutview" />
+
+</RelativeLayout>
