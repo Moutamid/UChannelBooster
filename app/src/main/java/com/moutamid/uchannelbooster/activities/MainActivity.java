@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 //        Utils.changeLanguage(Utils.getString(Constants.CURRENT_LANGUAGE_CODE, "en"));
+        Constants.adjustFontScale(this);
         setContentView(R.layout.activity_main);
         bp = BillingProcessor.newBillingProcessor(this, Constants.LICENSE_KEY, this);
         bp.initialize();

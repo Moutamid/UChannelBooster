@@ -50,6 +50,7 @@ public class BuyPointsActivity extends AppCompatActivity implements BillingProce
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        Utils.changeLanguage(Utils.getString(Constants.CURRENT_LANGUAGE_CODE, "en"));
+        Constants.adjustFontScale(this);
         b = ActivityBuyPointsBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
 
@@ -126,7 +127,8 @@ public class BuyPointsActivity extends AppCompatActivity implements BillingProce
                         .setValue(hashMap);
 
                 // INCREASE USER AMOUNT
-                databaseReference().child(Constants.USER_INFO).child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseReference().child(Constants.USER_INFO).child(mAuth.getUid())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {

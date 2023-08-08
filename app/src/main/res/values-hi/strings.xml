@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palcon Booster</string>
+    <string name="app_name">UChannelBooster</string>
     <string name="title_activity_bottom_navigation">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -61,7 +61,7 @@
     <string name="_1_week">1 सप्ताह</string>
     <string name="_1_month_save_40">1 महीना (40% बचाएं)</string>
     <string name="_3_months_save_50">3 महीने (50% बचाएं)</string>
-    <string name="note_subscriptions_are_renewed_according_to_specified_period_in_case_you_want_to_stop_renew_at_anytime_you_must_enter_google_play_store_menu_subscriptions_palcon_booster_cancel_subscription">नोट: सदस्यता निर्दिष्ट अवधि के अनुसार नवीनीकृत की जाती है। यदि आप रुकना चाहते हैं, किसी भी समय नवीनीकरण करना चाहते हैं, तो आपको Google Play Store - मेनू - सब्सक्रिप्शन - Palcon बूस्टर - सदस्यता रद्द करें दर्ज करना होगा।</string>
+    <string name="note_subscriptions_are_renewed_according_to_specified_period_in_case_you_want_to_stop_renew_at_anytime_you_must_enter_google_play_store_menu_subscriptions_palcon_booster_cancel_subscription">नोट: सदस्यता निर्दिष्ट अवधि के अनुसार नवीनीकृत की जाती है। यदि आप रुकना चाहते हैं, किसी भी समय नवीनीकरण करना चाहते हैं, तो आपको Google Play Store - मेनू - सब्सक्रिप्शन - UChannelBooster बूस्टर - सदस्यता रद्द करें दर्ज करना होगा।</string>
     <string name="campaignn">अभियान</string>
     <string name="pointss">अंक</string>
     <string name="add_your_video">अपना वीडियो जोड़ें</string>

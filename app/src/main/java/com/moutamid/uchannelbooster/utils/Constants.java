@@ -1,5 +1,13 @@
 package com.moutamid.uchannelbooster.utils;
 
+import static android.content.Context.WINDOW_SERVICE;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.WindowManager;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -66,8 +74,22 @@ public class Constants {
     public static final String LANGUAGE_CODE_URDU = "ur";
 
     public static DatabaseReference databaseReference() {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("UChannelBooster");
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference()
+                .child("UChannelBooster");
         db.keepSynced(true);
         return db;
+    }
+
+    public static void adjustFontScale(Context context) {
+        Configuration configuration = context.getResources().getConfiguration();
+        if (configuration.fontScale > 1.00) {
+            Log.d("TAG1", "fontScale=" + configuration.fontScale);
+            configuration.fontScale = 1.00f;
+            DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+            WindowManager wm = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+            wm.getDefaultDisplay().getMetrics(metrics);
+            metrics.scaledDensity = configuration.fontScale * metrics.density;
+            context.getResources().updateConfiguration(configuration, metrics);
+        }
     }
 }

@@ -29,8 +29,6 @@
             android:name="com.moutamid.uchannelbooster.activities.BuyPointsActivity"
             android:exported="true" />
         <activity android:name="com.moutamid.uchannelbooster.activities.AddTaskActivity" />
-        <activity android:name="com.moutamid.uchannelbooster.activities.PersonalInfoActivity" />
-        <activity android:name="com.moutamid.uchannelbooster.activities.TestCoinsActivity" />
         <activity
             android:name="com.moutamid.uchannelbooster.activities.BottomNavigationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"

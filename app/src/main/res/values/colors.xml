@@ -192,6 +192,7 @@
 
 
     <color name="premium_red">#FF3E3E</color>
+    <color name="logo_red">#FD0000</color>
 
 
 </resources>

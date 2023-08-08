@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.BuyPointsActivity">
-<!--TODO: RENAME ALL VARIABLES OF COINS IN JAVA AS WELL-->
-<!--TODO: CHANGE ALL THE VALUES OF DOLLARS IN PLAY CONSOLE ALSO  -->
+    <!--TODO: RENAME ALL VARIABLES OF COINS IN JAVA AS WELL-->
+    <!--TODO: CHANGE ALL THE VALUES OF DOLLARS IN PLAY CONSOLE ALSO  -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -44,19 +44,33 @@
 -->
         </LinearLayout>
 
-        <ImageView
+        <!--<ImageView
             android:layout_width="match_parent"
-            android:src="@drawable/ic_header_white"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_toStartOf="@+id/endLayoutBottom"
-            android:layout_height="wrap_content"/>
+            android:src="@drawable/ic_header_white" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_toStartOf="@+id/endLayoutBottom"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="start"
+            android:text="@string/app_name"
+            android:autoSizeTextType="uniform"
+            android:layout_marginStart="20dp"
+            android:breakStrategy="balanced"
+            android:maxLines="1"
+            android:textColor="@color/premium_red"
+            android:textStyle="bold"
+            android:textSize="25sp" />
 
         <LinearLayout
+            android:id="@+id/endLayoutBottom"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:id="@+id/endLayoutBottom"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:orientation="horizontal">

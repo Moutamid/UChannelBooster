@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palcon Booster</string>
+    <string name="app_name">UChannelBooster</string>
     <string name="title_activity_bottom_navigation">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -61,7 +61,7 @@
     <string name="_1_week">일주</string>
     <string name="_1_month_save_40">1개월(40% 할인)</string>
     <string name="_3_months_save_50">3개월(50% 할인)</string>
-    <string name="note_subscriptions_are_renewed_according_to_specified_period_in_case_you_want_to_stop_renew_at_anytime_you_must_enter_google_play_store_menu_subscriptions_palcon_booster_cancel_subscription">참고: 구독은 지정된 기간에 따라 갱신됩니다. 중단, 갱신을 원하시면 Google Play 스토어 - 메뉴 - 구독 - Palcon Booster - 구독 취소로 들어가셔야 합니다.</string>
+    <string name="note_subscriptions_are_renewed_according_to_specified_period_in_case_you_want_to_stop_renew_at_anytime_you_must_enter_google_play_store_menu_subscriptions_palcon_booster_cancel_subscription">참고: 구독은 지정된 기간에 따라 갱신됩니다. 중단, 갱신을 원하시면 Google Play 스토어 - 메뉴 - 구독 - UChannelBooster - 구독 취소로 들어가셔야 합니다.</string>
     <string name="campaignn">운동</string>
     <string name="pointss">포인트들</string>
     <string name="add_your_video">비디오 추가</string>

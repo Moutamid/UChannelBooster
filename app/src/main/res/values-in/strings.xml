@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Palcon Booster</string>
+    <string name="app_name">UChannelBooster</string>
     <string name="title_activity_bottom_navigation">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -61,7 +61,7 @@
     <string name="_1_week">1 minggu</string>
     <string name="_1_month_save_40">1 Bulan (Hemat 40%)</string>
     <string name="_3_months_save_50">3 Bulan (Hemat 50%)</string>
-    <string name="note_subscriptions_are_renewed_according_to_specified_period_in_case_you_want_to_stop_renew_at_anytime_you_must_enter_google_play_store_menu_subscriptions_palcon_booster_cancel_subscription">Catatan: Langganan diperbarui sesuai periode yang ditentukan. Jika Anda ingin berhenti, perbarui kapan saja, Anda harus masuk ke Google Play Store - Menu - Langganan - Palcon Booster - Batalkan Berlangganan</string>
+    <string name="note_subscriptions_are_renewed_according_to_specified_period_in_case_you_want_to_stop_renew_at_anytime_you_must_enter_google_play_store_menu_subscriptions_palcon_booster_cancel_subscription">Catatan: Langganan diperbarui sesuai periode yang ditentukan. Jika Anda ingin berhenti, perbarui kapan saja, Anda harus masuk ke Google Play Store - Menu - Langganan - UChannelBooster - Batalkan Berlangganan</string>
     <string name="campaignn">Kampanye</string>
     <string name="pointss">Poin</string>
     <string name="add_your_video">Tambahkan video Anda</string>

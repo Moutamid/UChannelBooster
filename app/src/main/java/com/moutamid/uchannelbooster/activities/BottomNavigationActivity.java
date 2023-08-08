@@ -82,6 +82,7 @@ public class BottomNavigationActivity extends AppCompatActivity implements Navig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        Utils.changeLanguage(Utils.getString(Constants.CURRENT_LANGUAGE_CODE, "en"));
+        Constants.adjustFontScale(this);
         setContentView(R.layout.activity_bottom_navigation);
 
         FirebaseMessaging.getInstance().subscribeToTopic("all");

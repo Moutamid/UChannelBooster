@@ -105,6 +105,7 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        Utils.changeLanguage(Utils.getString(Constants.CURRENT_LANGUAGE_CODE, "en"));
+        Constants.adjustFontScale(this);
         setContentView(R.layout.activity_add_task);
 
         videoType = getIntent().getStringExtra(Constants.PARAMS);

@@ -50,6 +50,7 @@ public class VipActivity extends AppCompatActivity implements BillingProcessor.I
         super.onCreate(savedInstanceState);
 //        Utils.changeLanguage(Constants.LANGUAGE_CODE_ARABIC);
 //        Utils.changeLanguage(Utils.getString(Constants.CURRENT_LANGUAGE_CODE, "en"));
+        Constants.adjustFontScale(this);
         b = ActivityVipBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
         getCoinsAmount();
