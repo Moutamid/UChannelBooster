@@ -11,7 +11,7 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="do_you_really_wanna_log_out">Do you really want to logout? \n\nNote: This will clear app data and the app will be closed!</string>
     <string name="yes">Yes</string>
-    <string name="points">\"Points: \"</string>
+    <string name="points">Points: </string>
     <string name="purchase_successfull">Purchase Successful!</string>
     <string name="purchasenotsuccessfull">Purchased was not successful!</string>
     <string name="addvideoforviews">Add your video for views</string>
