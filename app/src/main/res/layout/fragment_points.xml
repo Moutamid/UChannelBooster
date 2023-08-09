@@ -20,11 +20,11 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="10dp">
 
                 <LinearLayout
@@ -42,15 +42,15 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/buyPointsBtn"
                         android:layout_width="150dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_height="40dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="20dp"
-                        android:background="@color/accentColor"
+                        android:backgroundTint="@color/red"
                         android:text="@string/buy_points"
                         android:textColor="@color/white"
                         app:backgroundTint="@color/red"
-                        app:cornerRadius="8dp" />
+                        app:cornerRadius="@dimen/button_radius" />
 
 
                 </LinearLayout>
@@ -60,10 +60,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="10dp">
 
                 <LinearLayout
@@ -81,15 +81,13 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/vipBtn"
                         android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_height="40dp"
-                        android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="20dp"
-                        android:background="@color/accentColor"
                         android:text="@string/vip_membership"
                         android:textColor="@color/white"
                         app:backgroundTint="@color/red"
-                        app:cornerRadius="8dp" />
+                        app:cornerRadius="@dimen/button_radius" />
 
 
                 </LinearLayout>
@@ -99,10 +97,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="10dp">
 
                 <LinearLayout
@@ -120,103 +118,19 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/feedbackBtn"
                         android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_height="40dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="20dp"
-                        android:background="@color/accentColor"
                         android:text="@string/leave_feedback"
                         android:textColor="@color/white"
                         app:backgroundTint="@color/red"
-                        app:cornerRadius="8dp" />
+                        app:cornerRadius="@dimen/button_radius" />
 
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/ic_small_box"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/ic_coin" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/buy_coins"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/ic_small_box"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/ic_baseline_person_24" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/personal_information"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <!--<LinearLayout
-                android:id="@+id/logout_layout"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/ic_small_box"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/ic_baseline_person_24" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="LogOut"
-                    android:textSize="25sp" />
-
-            </LinearLayout>-->
-
 
             <View
                 android:layout_width="match_parent"

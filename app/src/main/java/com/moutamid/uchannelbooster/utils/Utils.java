@@ -7,6 +7,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.LocaleList;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -685,82 +687,82 @@ YourFragmentClass fragment = (YourFragmentClass)fm.findFragmentByTag("yourTag");
 
 }
 
-/*
-public class Utils {
+    /*
+    public class Utils {
 
-    private static final String PACKAGE_NAME = "dev.moutamid.uchannelbooster";
+        private static final String PACKAGE_NAME = "dev.moutamid.uchannelbooster";
 
-    private SharedPreferences sharedPreferences;
+        private SharedPreferences sharedPreferences;
 
-    public void removeSharedPref(Context context) {
-        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        sharedPreferences.edit().clear().apply();
-    }
+        public void removeSharedPref(Context context) {
+            sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences.edit().clear().apply();
+        }
 
-    public String getStoredString(Context context, String name) {
-        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(name, "Error");
-    }
+        public String getStoredString(Context context, String name) {
+            sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            return sharedPreferences.getString(name, "Error");
+        }
 
-    public void storeString(Context context, String name, String object) {
-        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        sharedPreferences.edit().putString(name, object).apply();
-    }
+        public void storeString(Context context, String name, String object) {
+            sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString(name, object).apply();
+        }
 
-    public void storeBoolean(Context context1, String name, boolean value) {
-        sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        sharedPreferences.edit().putBoolean(name, value).apply();
-    }
+        public void storeBoolean(Context context1, String name, boolean value) {
+            sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean(name, value).apply();
+        }
 
-    public boolean getStoredBoolean(Context context1, String name) {
-        sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(name, false);
-    }
+        public boolean getStoredBoolean(Context context1, String name) {
+            sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            return sharedPreferences.getBoolean(name, false);
+        }
 
-    public void storeInteger(Context context1, String name, int value) {
-        sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        sharedPreferences.edit().putInt(name, value).apply();
-    }
+        public void storeInteger(Context context1, String name, int value) {
+            sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences.edit().putInt(name, value).apply();
+        }
 
-    public int getStoredInteger(Context context1, String name) {
-        sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getInt(name, 0);
-    }
+        public int getStoredInteger(Context context1, String name) {
+            sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            return sharedPreferences.getInt(name, 0);
+        }
 
-    public void storeFloat(Context context1, String name, float value) {
-        sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        sharedPreferences.edit().putFloat(name, value).apply();
-    }
+        public void storeFloat(Context context1, String name, float value) {
+            sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences.edit().putFloat(name, value).apply();
+        }
 
-    public float getStoredFloat(Context context1, String name) {
-        sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getFloat(name, 0);
-    }
+        public float getStoredFloat(Context context1, String name) {
+            sharedPreferences = context1.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            return sharedPreferences.getFloat(name, 0);
+        }
 
-    //    public void storeArrayList(Context context, String name, ArrayList<String> arrayList) {
-//        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor edit = sharedPreferences.edit();
-//        Set<String> set = new HashSet<>(arrayList);
-//        edit.putStringSet(name, set);
-//        edit.apply();
-//    }
-//
-//    public ArrayList<String> getStoredArrayList(Context context, String name) {
-//        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-//        Set<String> defaultSet = new HashSet<>();
-//        defaultSet.add("Error");
-//        Set<String> set = sharedPreferences.getStringSet(name, defaultSet);
-//        return new ArrayList<>(set);
-//    }
+        //    public void storeArrayList(Context context, String name, ArrayList<String> arrayList) {
+    //        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+    //        SharedPreferences.Editor edit = sharedPreferences.edit();
+    //        Set<String> set = new HashSet<>(arrayList);
+    //        edit.putStringSet(name, set);
+    //        edit.apply();
+    //    }
+    //
+    //    public ArrayList<String> getStoredArrayList(Context context, String name) {
+    //        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+    //        Set<String> defaultSet = new HashSet<>();
+    //        defaultSet.add("Error");
+    //        Set<String> set = sharedPreferences.getStringSet(name, defaultSet);
+    //        return new ArrayList<>(set);
+    //    }
 
-    public String getRandomNmbr(int length) {
-        return String.valueOf(new Random().nextInt(length) + 1);
-    }
+        public String getRandomNmbr(int length) {
+            return String.valueOf(new Random().nextInt(length) + 1);
+        }
 
-//    public void showOfflineDialog(Context context, String title, String desc) {
-//
+    //    public void showOfflineDialog(Context context, String title, String desc) {
+    //
 
-    */
+        */
 /*
 		<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1067,20 +1069,6 @@ public class Utils {
 //        Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show();
 //    }
-*/
-/*public void changeStatusBarColor(Activity activity, int id) {
-
-    // Changing the color of status bar
-    if (Build.VERSION.SDK_INT >= 21) {
-        Window window = activity.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(activity.getResources().getColor(id));
-    }
-
-    // CHANGE STATUS BAR TO TRANSPARENT
-    //window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-}
 
     // PUBLIC METHOD TO GET VIEW FROM ONE ACTIVITY OR FRAGMENT TO ANOTHER
     //-------------------------------------------------------------------

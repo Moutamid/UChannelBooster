@@ -74,8 +74,8 @@ public class Constants {
     public static final String LANGUAGE_CODE_URDU = "ur";
 
     public static DatabaseReference databaseReference() {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference()
-                .child("UChannelBooster");
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+//                .child("UChannelBooster");
         db.keepSynced(true);
         return db;
     }

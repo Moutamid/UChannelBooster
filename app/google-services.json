@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1074057275535",
+    "firebase_url": "https://uchannelbooster-69234-default-rtdb.firebaseio.com",
     "project_id": "uchannelbooster-69234",
     "storage_bucket": "uchannelbooster-69234.appspot.com"
   },
@@ -22,7 +23,7 @@
           }
         },
         {
-          "client_id": "1074057275535-qqhgu9trfjnrlgbfufts154tfbnm7ckt.apps.googleusercontent.com",
+          "client_id": "1074057275535-driuc740aq9pp0uki3od24rlh651osqt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1074057275535-qqhgu9trfjnrlgbfufts154tfbnm7ckt.apps.googleusercontent.com",
+              "client_id": "1074057275535-driuc740aq9pp0uki3od24rlh651osqt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

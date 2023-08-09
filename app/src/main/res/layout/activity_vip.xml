@@ -109,7 +109,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
-                app:cardCornerRadius="25dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="10dp">
 
                 <LinearLayout
@@ -147,7 +147,7 @@
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
                 android:id="@+id/oneWeekVip"
-                app:cardCornerRadius="25dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="10dp">
 
                 <RelativeLayout style="@style/relativeLayout">
@@ -181,7 +181,7 @@
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
                 android:id="@+id/oneMonthVip"
-                app:cardCornerRadius="25dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="10dp">
 
                 <RelativeLayout style="@style/relativeLayout">
@@ -217,7 +217,7 @@
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
                 android:id="@+id/threeMonthsVip"
-                app:cardCornerRadius="25dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="10dp">
 
                 <RelativeLayout style="@style/relativeLayout">
@@ -251,7 +251,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
-                app:cardCornerRadius="25dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="10dp">
 
                 <RelativeLayout style="@style/relativeLayout">
@@ -261,9 +261,9 @@
                         <TextView
                             style="@style/textviewStyle"
                             android:layout_marginVertical="20dp"
-
                             android:text="@string/note_subscriptions_are_renewed_according_to_specified_period_in_case_you_want_to_stop_renew_at_anytime_you_must_enter_google_play_store_menu_subscriptions_palcon_booster_cancel_subscription"
                             android:textColor="@color/gray"
+                            android:textStyle="normal"
                             android:textSize="20sp" />
 
                     </LinearLayout>

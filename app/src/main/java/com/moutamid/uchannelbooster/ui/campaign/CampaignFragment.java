@@ -61,7 +61,7 @@ public class CampaignFragment extends Fragment {
 
     private ProgressDialog progressDialog;
 
-    ImageView fabViewBtn, fabLikeBtn, fabSubscribeBtn;
+    ImageView fabViewBtn, fabLikeBtn, fabSubscribeBtn, addFabBtn;
 //    FloatingActionButton fabViewBtn, fabLikeBtn, fabSubscribeBtn;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +77,7 @@ public class CampaignFragment extends Fragment {
         fabViewBtn = root.findViewById(R.id.viewTaskBtn);
         fabLikeBtn = root.findViewById(R.id.likeTaskBtn);
         fabSubscribeBtn = root.findViewById(R.id.subscribeTaskBtn);
+        addFabBtn = root.findViewById(R.id.addBtnShowTasks);
 
         fabViewBtn.setOnClickListener(fabViewBtnClickListener());
         fabLikeBtn.setOnClickListener(fabLikeBtnClickListener());
@@ -127,7 +128,7 @@ public class CampaignFragment extends Fragment {
 
 //        setAddTaskButton();
 
-        root.findViewById(R.id.addBtnShowTasks).setOnClickListener(addBtnShowTasksClickListener());
+        addFabBtn.setOnClickListener(addBtnShowTasksClickListener());
 
         return root;
     }
@@ -334,12 +335,18 @@ public class CampaignFragment extends Fragment {
                     fabLikeBtn.setVisibility(View.GONE);
                     fabSubscribeBtn.setVisibility(View.GONE);
 
+                    addFabBtn.animate().rotation(addFabBtn.getRotation() + 45)
+                            .setDuration(500).start();
+
                 } else {
                     root.findViewById(R.id.viewview).setVisibility(View.VISIBLE);
 
                     fabViewBtn.setVisibility(View.VISIBLE);
                     fabLikeBtn.setVisibility(View.VISIBLE);
                     fabSubscribeBtn.setVisibility(View.VISIBLE);
+
+                    addFabBtn.animate().rotation(addFabBtn.getRotation() + 45)
+                            .setDuration(500).start();
                 }
             }
         };

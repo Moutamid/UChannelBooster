@@ -4,7 +4,7 @@
     android:id="@+id/parent_layout_task_home"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@color/white">
+    android:background="@drawable/bg_tasks">
 
     <ImageView
         android:id="@+id/youtube_thumbnail_imageview"
