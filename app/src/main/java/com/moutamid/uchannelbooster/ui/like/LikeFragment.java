@@ -363,7 +363,7 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
             chooseAccount();
         } else if (!isDeviceOnline()) {
 //            mOutputText.setText("No network connection available.");
-            b.outputTextViewLike.setText("No network connection available.");
+//            b.outputTextViewLike.setText("No network connection available.");
             Utils.toast("No network connection");
         } else {
             new MakeRequestTask(mCredential).execute();

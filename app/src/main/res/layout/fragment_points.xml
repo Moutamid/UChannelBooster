@@ -136,7 +136,6 @@
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
-                android:id="@+id/buy_coins_layout"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
@@ -164,7 +163,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/personal_information_layout"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"

@@ -42,7 +42,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
 //        int resourceImage = getResources().getIdentifier(remoteMessage.getNotification().getIcon(), "drawable", getPackageName());
         NotificationCompat.Builder builder = new NotificationCompat.Builder((Context) this, "CHANNEL_ID");
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground1);
+        builder.setSmallIcon(R.drawable.ic_logo_viewplus);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, new Intent(this, MainActivity.class),
                 PendingIntent.FLAG_UPDATE_CURRENT);//134217728
         builder.setContentTitle(remoteMessage.getNotification().getTitle());

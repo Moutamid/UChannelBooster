@@ -1,15 +1,9 @@
 <resources>
     <string name="app_name">UChannelBooster</string>
     <string name="title_activity_bottom_navigation">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="adsubscribed">광고 구독</string>
-    <string name="per_6_month_subcription">com.paper.hdwallpaperapp.subscription</string>
     <string name="low_coins_mcg">코인이 낮아 조회수를 구매할 수 없습니다.</string>
     <string name="loading">로드 중...</string>
     <string name="no_coins_exist">코인이 존재하지 않습니다!</string>

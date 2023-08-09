@@ -146,7 +146,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
-                android:id="@+id/one_week_vip"
+                android:id="@+id/oneWeekVip"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="10dp">
 
@@ -180,8 +180,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
+                android:id="@+id/oneMonthVip"
                 app:cardCornerRadius="25dp"
-                android:id="@+id/one_month_vip"
                 app:cardElevation="10dp">
 
                 <RelativeLayout style="@style/relativeLayout">
@@ -216,8 +216,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/cardLayout"
+                android:id="@+id/threeMonthsVip"
                 app:cardCornerRadius="25dp"
-                android:id="@+id/three_months_vip"
                 app:cardElevation="10dp">
 
                 <RelativeLayout style="@style/relativeLayout">
