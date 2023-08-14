@@ -5,7 +5,7 @@
     android:id="@+id/main_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/logo_red"
+    android:background="@color/logo_red_main"
     tools:context=".activities.MainActivity">
     <!--    android:background="#F9F9F9"-->
 
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginHorizontal="40dp"
-            android:src="@drawable/ic_logo_viewplus" />
+            android:src="@drawable/ic_logo_viewplus_main" />
 
         <TextView
             android:layout_width="match_parent"

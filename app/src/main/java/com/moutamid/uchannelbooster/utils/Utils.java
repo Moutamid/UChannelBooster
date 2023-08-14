@@ -60,7 +60,7 @@ public class Utils {
         utils = new Utils();
         instance = context;
         if (utils.sp == null) {
-            utils.sp = context.getSharedPreferences("dev.moutamid.uchannelbooster", Context.MODE_PRIVATE);
+            utils.sp = context.getSharedPreferences("com.moutamid.uchannelbooster", Context.MODE_PRIVATE);
 //            utils.sp = PreferenceManager.getDefaultSharedPreferences(context);
         }
 
@@ -690,7 +690,7 @@ YourFragmentClass fragment = (YourFragmentClass)fm.findFragmentByTag("yourTag");
     /*
     public class Utils {
 
-        private static final String PACKAGE_NAME = "dev.moutamid.uchannelbooster";
+        private static final String PACKAGE_NAME = "com.moutamid.uchannelbooster";
 
         private SharedPreferences sharedPreferences;
 

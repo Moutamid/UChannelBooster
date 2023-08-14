@@ -385,7 +385,7 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
         try {
             if (EasyPermissions.hasPermissions(
                     requireContext(), Manifest.permission.GET_ACCOUNTS)) {
-                String accountName = requireContext().getSharedPreferences("dev.moutamid.uchannelbooster", Context.MODE_PRIVATE)
+                String accountName = requireContext().getSharedPreferences("com.moutamid.uchannelbooster", Context.MODE_PRIVATE)
                         .getString(PREF_ACCOUNT_NAME, null);
                 if (accountName != null) {
                     mCredential.setSelectedAccountName(accountName);
@@ -444,7 +444,7 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
                     if (accountName != null) {
                         try {
                             SharedPreferences settings =
-                                    requireContext().getSharedPreferences("dev.moutamid.uchannelbooster", Context.MODE_PRIVATE);
+                                    requireContext().getSharedPreferences("com.moutamid.uchannelbooster", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putString(PREF_ACCOUNT_NAME, accountName);
                             editor.apply();

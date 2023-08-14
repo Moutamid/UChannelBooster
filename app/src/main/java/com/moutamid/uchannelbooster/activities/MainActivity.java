@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.logo_red));
+            window.setStatusBarColor(getResources().getColor(R.color.logo_red_main));
         }
         Constants.adjustFontScale(this);
         setContentView(R.layout.activity_main);
