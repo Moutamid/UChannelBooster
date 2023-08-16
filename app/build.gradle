@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.moutamid.uchannelbooster'
+    namespace 'com.moutamid.uchannelboost'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.moutamid.uchannelbooster"
+        applicationId "com.moutamid.uchannelboost"
         minSdk 24
         targetSdk 33
         versionCode 1

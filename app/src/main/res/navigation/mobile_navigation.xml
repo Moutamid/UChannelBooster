@@ -6,31 +6,31 @@
 
     <fragment
         android:id="@+id/navigation_subscribe"
-        android:name="com.moutamid.uchannelbooster.ui.subscribe.SubscribeFragment"
+        android:name="com.moutamid.uchannelboost.ui.subscribe.SubscribeFragment"
         android:label="Subscribe"
         tools:layout="@layout/fragment_subscribe" />
 
     <fragment
         android:id="@+id/navigation_like"
-        android:name="com.moutamid.uchannelbooster.ui.like.LikeFragment"
+        android:name="com.moutamid.uchannelboost.ui.like.LikeFragment"
         android:label="Like"
         tools:layout="@layout/fragment_like" />
 
     <fragment
         android:id="@+id/navigation_view"
-        android:name="com.moutamid.uchannelbooster.ui.view.ViewFragment"
+        android:name="com.moutamid.uchannelboost.ui.view.ViewFragment"
         android:label="View"
         tools:layout="@layout/fragment_view" />
 
     <fragment
         android:id="@+id/navigation_campaign"
-        android:name="com.moutamid.uchannelbooster.ui.campaign.CampaignFragment"
+        android:name="com.moutamid.uchannelboost.ui.campaign.CampaignFragment"
         android:label="Campaign"
         tools:layout="@layout/fragment_campaign" />
 
     <fragment
         android:id="@+id/navigation_points"
-        android:name="com.moutamid.uchannelbooster.ui.points.PointsFragment"
+        android:name="com.moutamid.uchannelboost.ui.points.PointsFragment"
         android:label="Points"
         tools:layout="@layout/fragment_points" />
 
