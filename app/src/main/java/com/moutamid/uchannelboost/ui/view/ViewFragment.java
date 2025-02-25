@@ -45,9 +45,10 @@ import com.moutamid.uchannelboost.utils.Utils;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerViewKt;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,6 +63,9 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 public class ViewFragment extends Fragment {
     private static final String TAG = "ViewFragment";
@@ -382,31 +386,31 @@ public class ViewFragment extends Fragment {
         youTubePlayerView.enableBackgroundPlayback(false);
 
         // Showing Video Title
-        youTubePlayerView.getPlayerUiController().showVideoTitle(true);
-        youTubePlayerView.getPlayerUiController().setVideoTitle(getString(R.string.loading));
-
-        // Showing Custom Forward and Backward Icons
-        youTubePlayerView.getPlayerUiController().showCustomAction1(false);
-        youTubePlayerView.getPlayerUiController().showCustomAction2(false);
-
-        // Showing Menu Button
-        youTubePlayerView.getPlayerUiController().showMenuButton(false);
-
-        // Hiding Full Screen Button
-//        youTubePlayerView.getPlayerUiController().showFullscreenButton(false);
-
-        // Showing Full Screen Button
-        youTubePlayerView.getPlayerUiController().showFullscreenButton(true);
-        youTubePlayerView.getPlayerUiController().setFullScreenButtonClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: fullscreen");
-                youTubePlayerView.toggleFullScreen();
-            }
-        });
-
-        // Hiding Seekbar
-        youTubePlayerView.getPlayerUiController().showSeekBar(false);
+//        youTubePlayerView.getPlayerUiController().showVideoTitle(true);
+//        youTubePlayerView.getPlayerUiController().setVideoTitle(getString(R.string.loading));
+//
+//        // Showing Custom Forward and Backward Icons
+//        youTubePlayerView.getPlayerUiController().showCustomAction1(false);
+//        youTubePlayerView.getPlayerUiController().showCustomAction2(false);
+//
+//        // Showing Menu Button
+//        youTubePlayerView.getPlayerUiController().showMenuButton(false);
+//
+//        // Hiding Full Screen Button
+////        youTubePlayerView.getPlayerUiController().showFullscreenButton(false);
+//
+//        // Showing Full Screen Button
+//        youTubePlayerView.getPlayerUiController().showFullscreenButton(true);
+//        youTubePlayerView.getPlayerUiController().setFullScreenButtonClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d(TAG, "onClick: fullscreen");
+//                youTubePlayerView.toggleFullScreen();
+//            }
+//        });
+//
+//        // Hiding Seekbar
+//        youTubePlayerView.getPlayerUiController().showSeekBar(false);
 
         TextView tv = root.findViewById(R.id.current_sec);
 
@@ -786,8 +790,8 @@ public class ViewFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             isRunning = true;
-            if (!isCancelled())
-                youTubePlayerView.getPlayerUiController().setVideoTitle(getString(R.string.loading));
+//            if (!isCancelled())
+////                youTubePlayerView.getPlayerUiController().setVideoTitle(getString(R.string.loading));
         }
 
         @Override
@@ -851,7 +855,7 @@ public class ViewFragment extends Fragment {
             super.onPostExecute(s);
 
             if (!isCancelled())
-                youTubePlayerView.getPlayerUiController().setVideoTitle(s);
+//                youTubePlayerView.getPlayerUiController().setVideoTitle(s);
 
             isRunning = false;
         }
@@ -943,53 +947,49 @@ public class ViewFragment extends Fragment {
     }
 
     private void addFullScreenListenerToPlayer(final YouTubePlayer youTubePlayer) {
+youTubePlayerView.addFullscreenListener(new FullscreenListener() {
+    @Override
+    public void onEnterFullscreen(@NonNull View view, @NonNull Function0<Unit> function0) {
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        youTubePlayerView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
+        fullScreenHelper.enterFullScreen();
 
-            @Override
-            public void onYouTubePlayerEnterFullScreen() {
+        //addCustomActionToPlayer(youTubePlayer);
 
-                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        ViewGroup.LayoutParams viewParams = youTubePlayerView.getLayoutParams();
+        viewParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        viewParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        youTubePlayerView.setLayoutParams(viewParams);
 
-                fullScreenHelper.enterFullScreen();
-
-                //addCustomActionToPlayer(youTubePlayer);
-
-                ViewGroup.LayoutParams viewParams = youTubePlayerView.getLayoutParams();
-                viewParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-                viewParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                youTubePlayerView.setLayoutParams(viewParams);
-
-                // Adding Another Extra Custom Icon to top
+        // Adding Another Extra Custom Icon to top
 //                imageView1.setImageResource(R.drawable.ic_drop_down_menu_white);
 //                imageView1.setBackgroundResource(R.drawable.bg_on_board_btn);
-                //imageView1.setOnClickListener(listener);
+        //imageView1.setOnClickListener(listener);
 //                resizeImageView(imageView1);
 //                youTubePlayerView.getPlayerUiController().addView(imageView1);
 
-            }
 
+    }
 
-            @Override
-            public void onYouTubePlayerExitFullScreen() {
+    @Override
+    public void onExitFullscreen() {
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        fullScreenHelper.exitFullScreen();
 
-                fullScreenHelper.exitFullScreen();
+        //removeCustomActionFromPlayer();
 
-                //removeCustomActionFromPlayer();
+        ViewGroup.LayoutParams viewParams = youTubePlayerView.getLayoutParams();
+        viewParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        viewParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        youTubePlayerView.setLayoutParams(viewParams);
 
-                ViewGroup.LayoutParams viewParams = youTubePlayerView.getLayoutParams();
-                viewParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                viewParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                youTubePlayerView.setLayoutParams(viewParams);
-
-                // Remove View
+        // Remove View
 //                youTubePlayerView.getPlayerUiController().removeView(imageView1);
 
-            }
 
-        });
+    }
+});
 
     }
 
@@ -1007,14 +1007,14 @@ public class ViewFragment extends Fragment {
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape mode
 
-            if (!youTubePlayerView.isFullScreen())
-                youTubePlayerView.enterFullScreen();
+//            if (!youTubePlayerView.isFullScreen())
+//                youTubePlayerView.enterFullScreen();
 
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             // Portrait mode
 
-            if (youTubePlayerView.isFullScreen())
-                youTubePlayerView.exitFullScreen();
+//            if (youTubePlayerView.isFullScreen())
+//                youTubePlayerView.exitFullScreen();
 
         }
 
@@ -1131,12 +1131,19 @@ public class ViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+youTubePlayerView.addFullscreenListener(new FullscreenListener() {
+    @Override
+    public void onEnterFullscreen(@NonNull View view, @NonNull Function0<Unit> function0) {
+        View statusView = getActivity().getWindow().getDecorView();
 
-        if (youTubePlayerView.isFullScreen()) {
+        fullScreenHelper.hideSystemUI(statusView);
+    }
 
-            View statusView = getActivity().getWindow().getDecorView();
+    @Override
+    public void onExitFullscreen() {
 
-            fullScreenHelper.hideSystemUI(statusView);
-        }
+    }
+});
+
     }
 }

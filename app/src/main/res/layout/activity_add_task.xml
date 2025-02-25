@@ -93,8 +93,7 @@
         android:layout_height="wrap_content"
         android:elevation="8dp"
         app:enableAutomaticInitialization="true"
-        app:handleNetworkEvents="true"
-        app:showFullScreenButton="false" />
+        app:handleNetworkEvents="true" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

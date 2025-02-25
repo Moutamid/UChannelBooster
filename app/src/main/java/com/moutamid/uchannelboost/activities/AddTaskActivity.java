@@ -308,22 +308,22 @@ public class AddTaskActivity extends AppCompatActivity {
 
         youTubePlayerView.enableBackgroundPlayback(false);
 
-        // Showing Video Title
-        youTubePlayerView.getPlayerUiController().showVideoTitle(true);
-        youTubePlayerView.getPlayerUiController().setVideoTitle(getString(R.string.loading));
-
-        // Showing Custom Forward and Backward Icons
-        youTubePlayerView.getPlayerUiController().showCustomAction1(false);
-        youTubePlayerView.getPlayerUiController().showCustomAction2(false);
-
-        // Showing Menu Button
-        youTubePlayerView.getPlayerUiController().showMenuButton(false);
-
-        // Hiding Full Screen Button
-        youTubePlayerView.getPlayerUiController().showFullscreenButton(false);
-
-        // Hiding Seekbar
-        youTubePlayerView.getPlayerUiController().showSeekBar(false);
+//        // Showing Video Title
+//        youTubePlayerView.getPlayerUiController().showVideoTitle(true);
+//        youTubePlayerView.getPlayerUiController().setVideoTitle(getString(R.string.loading));
+//
+//        // Showing Custom Forward and Backward Icons
+//        youTubePlayerView.getPlayerUiController().showCustomAction1(false);
+//        youTubePlayerView.getPlayerUiController().showCustomAction2(false);
+//
+//        // Showing Menu Button
+//        youTubePlayerView.getPlayerUiController().showMenuButton(false);
+//
+//        // Hiding Full Screen Button
+//        youTubePlayerView.getPlayerUiController().showFullscreenButton(false);
+//
+//        // Hiding Seekbar
+//        youTubePlayerView.getPlayerUiController().showSeekBar(false);
 
         // INIT PLAYER VIEW
         getVideoTitle.setId(videoUrl);
@@ -411,14 +411,14 @@ public class AddTaskActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (youTubePlayerView.isFullScreen()) {
-
-            youTubePlayerView.exitFullScreen();
-
-        } else {
+//        if (youTubePlayerView.isFullScreen()) {
+//
+//            youTubePlayerView.exitFullScreen();
+//
+//        } else {
 
             super.onBackPressed();
-        }
+//        }
     }
 
     private class GetVideoTitle extends AsyncTask<String, Void, String> {
@@ -488,7 +488,7 @@ public class AddTaskActivity extends AppCompatActivity {
             super.onPostExecute(s);
 
             if (!isCancelled()) {
-                youTubePlayerView.getPlayerUiController().setVideoTitle(s);
+//                youTubePlayerView.getPlayerUiController().setVideoTitle(s);
             }
 
         }
