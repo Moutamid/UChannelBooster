@@ -24,7 +24,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/backBTnAddTask"
+                android:id="@+id/back"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
@@ -65,7 +65,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/coins_text_view_add_task"
+                android:id="@+id/coin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -88,7 +88,7 @@
     </RelativeLayout>
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/youtube_player_view_native"
+        android:id="@+id/youtubePlayerViewFragmentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
@@ -146,7 +146,7 @@
                     android:textSize="17sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/select_subscribers_quantity_button"
+                    android:id="@+id/pickerSubAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -180,7 +180,7 @@
                     android:textSize="17sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/select_likes_quantity_button"
+                    android:id="@+id/pickerLikes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -200,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+               >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -219,7 +219,7 @@
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/select_view_quantity_button"
+                        android:id="@+id/pickerViews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -251,7 +251,7 @@
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/select_view_time_button"
+                        android:id="@+id/pickerTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -330,7 +330,7 @@
                     android:textSize="17sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/total_cost_button"
+                    android:id="@+id/totalCoins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -355,7 +355,7 @@
                 android:textSize="35sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/done_button_add_task"
+                android:id="@+id/done"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

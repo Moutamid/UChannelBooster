@@ -68,7 +68,7 @@
         android:weightSum="2">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/subscribeBtnSubscribeActivity"
+            android:id="@+id/subscribeBtn"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginHorizontal="10dp"
@@ -84,7 +84,7 @@
             app:iconGravity="start" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/seeNextBtnSubscribe"
+            android:id="@+id/seeOther"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginHorizontal="10dp"

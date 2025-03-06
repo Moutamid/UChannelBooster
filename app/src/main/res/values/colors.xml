@@ -25,6 +25,9 @@
     <color name="premium_red">#FF3E3E</color>
     <color name="logo_red">#FD0000</color>
     <color name="logo_red_main">#FF3131</color>
-
+    <color name="dark_red">#B80000</color>
+    <color name="light_red">#FF4040</color>
+    <color name="dark_grey">#212121</color>
+    <color name="light_grey">#E0E0E0</color>
 
 </resources>

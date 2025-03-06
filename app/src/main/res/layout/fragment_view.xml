@@ -12,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <androidx.cardview.widget.CardView
             android:id="@+id/toplayoutlayout"
             android:layout_width="match_parent"
@@ -26,7 +29,7 @@
                 android:id="@+id/youtube_player_view_fragment_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:enableAutomaticInitialization="true"
+                app:enableAutomaticInitialization="false"
                 app:handleNetworkEvents="true" />
 
         </androidx.cardview.widget.CardView>
@@ -42,7 +45,7 @@
             android:weightSum="2">
 
             <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/autoplay_switch"
+                android:id="@+id/switchAuto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"

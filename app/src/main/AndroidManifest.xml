@@ -2,16 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
-        android:name="com.moutamid.uchannelboost.AppContext"
+        android:name=".AppContext"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,20 +23,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UChannelBooster"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.TestingActivity"
+            android:exported="true" >
 
+        </activity>
         <activity
-            android:name="com.moutamid.uchannelboost.activities.VipActivity"
+            android:name=".activities.VipActivity"
             android:exported="true" />
         <activity
-            android:name="com.moutamid.uchannelboost.activities.BuyPointsActivity"
+            android:name=".activities.BuyPointsActivity"
             android:exported="true" />
-        <activity android:name="com.moutamid.uchannelboost.activities.AddTaskActivity" />
+        <activity android:name=".activities.AddTaskActivity" />
         <activity
-            android:name="com.moutamid.uchannelboost.activities.BottomNavigationActivity"
+            android:name=".activities.BottomNavigationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:label="@string/title_activity_bottom_navigation" />
         <activity
-            android:name="com.moutamid.uchannelboost.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,13 +50,14 @@
         </activity>
 
         <service
-            android:name="com.moutamid.uchannelboost.notifications.FirebaseMessagingService"
+            android:name=".notifications.FirebaseMessagingService"
             android:exported="true"
             android:permission="TODO">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <receiver
             android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
             android:exported="true"
@@ -103,6 +110,10 @@
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
             android:exported="false" />
 
+        <service
+            android:name=".ui.subscribe.services.ForegroundService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
