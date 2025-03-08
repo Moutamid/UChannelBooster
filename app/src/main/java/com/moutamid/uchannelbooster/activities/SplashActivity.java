@@ -55,6 +55,7 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         if (mAuth != null && authListener != null) {
             mAuth.removeAuthStateListener(authListener);
