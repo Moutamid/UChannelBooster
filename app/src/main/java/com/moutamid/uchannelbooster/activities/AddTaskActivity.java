@@ -66,7 +66,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         url = Stash.getString(Constants.RECENT_LINK);
 
-
+        showHideLayoutsBasedOnTaskType();
         binding.back.setOnClickListener(v -> onBackPressed());
 
         Constants.databaseReference().child("userinfo").child(Constants.auth().getCurrentUser().getUid())
@@ -183,6 +183,17 @@ public class AddTaskActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void showHideLayoutsBasedOnTaskType() {
+        if (CAMPAIGN_SELECTION==1) {
+            findViewById(R.id.viewLayoutAddTask).setVisibility(View.VISIBLE);
+        }
+        if (CAMPAIGN_SELECTION==2) {
+            findViewById(R.id.likesLayoutAddTask).setVisibility(View.VISIBLE);
+        }
+        if (CAMPAIGN_SELECTION==0) {
+            findViewById(R.id.subscribersLayoutAddTask).setVisibility(View.VISIBLE);
+        }
     }
     private void uploadViewTask() {
         ProgressDialog progressDialog = new ProgressDialog(this);

@@ -139,8 +139,8 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null) {
-            finish();
             startActivity(new Intent(MainActivity.this, BottomNavigationActivity.class));
+            finish();
             return;
         }
 
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             public void onClick(View view) {
                 progressDialog.show();
                 signIn();
-                startActivity(new Intent(MainActivity.this, BottomNavigationActivity.class));
+//                startActivity(new Intent(MainActivity.this, BottomNavigationActivity.class));
 
 
             }
@@ -264,8 +264,8 @@ Log.d(TAG, user.getUid()+"--------");
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         progressDialog.dismiss();
-                                        finish();
                                         startActivity(new Intent(MainActivity.this, BottomNavigationActivity.class));
+                                        finish();
                                     } else {
                                         progressDialog.dismiss();
                                         Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

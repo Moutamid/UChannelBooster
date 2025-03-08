@@ -36,7 +36,7 @@
     <string name="yourdailylimitreached">Your daily limit reached!</string>
     <string name="thisappneedstoaccessgooglecontacts">This app needs to access your Google account (via Contacts).</string>
     <string name="likedmark">Liked!</string>
-    <string name="videoidmark">\"Video Id: \"</string>
+    <string name="videoidmark">Video Id: </string>
     <string name="subscribebracket">Subscribe (</string>
     <string name="subscribedmark">Subscribed!</string>
     <string name="campaign_settings">Campaign Settings</string>
