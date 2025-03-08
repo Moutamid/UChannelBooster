@@ -50,6 +50,7 @@ public class SplashActivity extends AppCompatActivity {
             finish();
         };
 
+
         new Handler().postDelayed(() -> mAuth.addAuthStateListener(authListener), 1500);
     }
 
