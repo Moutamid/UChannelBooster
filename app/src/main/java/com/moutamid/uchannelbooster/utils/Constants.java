@@ -2,10 +2,13 @@ package com.moutamid.uchannelbooster.utils;
 
 import static android.content.Context.WINDOW_SERVICE;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,9 @@ import androidx.annotation.NonNull;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.moutamid.uchannelbooster.R;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -29,10 +35,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Constants {
+    public static final String PRICES = "Price";
+    static Dialog dialog;
 
     public static final String PARAMS = "params";
     public static final String TYPE_VIEW = "type_view";
     public static final String TYPE_LIKE = "type_like";
+    public static final String COIN_PACK = "coin_packs";
+
+    public static final String TYPE = "type";
+    public static final String STASH_USER = "STASH_USER";
+    public static final String VIP_6_MONTH = "vip.six.month.com.moutamid.uchannelbooster";
+    public static final String VIP_3_MONTH = "vip.three.month.com.moutamid.uchannelbooster";
+    public static final String VIP_YEAR = "vip.yearly.com.moutamid.uchannelbooster";
     public static final String TYPE_SUBSCRIBE = "type_subscribe";
     public static final String LIKE_TASKS = "like_tasks";
     public static final String SUBSCRIBE_TASKS = "subscribe_tasks";
@@ -104,30 +119,14 @@ public class Constants {
     public static final String CAMPAIGN_SELECTION = "CAMPAIGN_SELECTION";
     public static final String VIEW_TASKS = "view_tasks";
     public static final String isAutoPlayEnabled = "isAutoPlayEnabled";
+    public static final String subscribeTaskModelArrayList = "subscribeTaskModelArrayList";
+    public static final String subscribeSwitchState = "subscribeSwitchState";
+    public static final String likeTaskModelArrayList = "likeTaskModelArrayList";
+    public static final String likeSwitchState = "likeSwitchState";
+    public static final String COUNTER_VALUE = "COUNTER_VALUE";
+    public static final String LIKE_COUNTER_VALUE = "LIKE_COUNTER_VALUE";
+    public static final String COURSE_PAYMENTS = "Payments";
 
-    public static final String[] subsQuantityArray = new String[]{
-            "10", "20", "30", "40", "50", "60", "70", "80", "90", "100",
-            "200", "300", "400", "500", "600", "700", "800", "900", "1000"
-    };
-
-    public static final String[] subTimeArray = new String[]{
-            "45", "60", "90", "120", "150", "180", "210", "240", "270", "300",
-            "330", "360", "390", "420", "450", "480", "510", "540", "570"
-    };
-
-    public static final String[] viewQuantityArray = new String[]{
-            "10", "50", "100", "150", "200", "250", "300", "350", "400", "450",
-            "500", "550", "600", "650", "700", "750", "800", "850", "900", "950", "1000"
-    };
-
-    public static final String[] viewTimeArray = new String[] {
-            "45", "60", "90", "120", "150", "180", "210", "240", "270", "300",
-            "330", "360", "390", "420", "450", "480", "510", "540", "570", "600"
-    };
-    public static final String[] likeTimeArray = new String[] {
-            "30", "60", "90", "120", "150", "180", "210", "240", "270", "300",
-            "330", "360", "390", "420", "450", "480", "510", "540", "570"
-    };
 
     public static FirebaseAuth auth() {
         return FirebaseAuth.getInstance();
@@ -138,6 +137,27 @@ public class Constants {
         db.keepSynced(true);
         return db;
     }
+
+    public static StorageReference storageReference(String auth) {
+        StorageReference sr = FirebaseStorage.getInstance().getReference().child("UChannelBooster").child(auth);
+        return sr;
+    }
+
+public static void initDialog(Context context) {
+    dialog = new Dialog(context);
+    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    dialog.setContentView(R.layout.loading_dialog);
+    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+    dialog.setCancelable(false);
+}
+
+public static void showDialog() {
+    dialog.show();
+}
+
+public static void dismissDialog() {
+    dialog.dismiss();
+}
 
     public static String getVideoId(@NonNull String videoUrl) {
         String videoId = "";

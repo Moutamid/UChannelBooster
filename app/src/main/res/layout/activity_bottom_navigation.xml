@@ -125,6 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cbn_bg="@color/premium_red"
+
                 app:cbn_fabBg="@color/premium_red"
                 app:cbn_fabElevation="0dp"
                 app:cbn_selectedColor="@color/white"

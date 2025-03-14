@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.moutamid.uchannelbooster.R;
 import com.moutamid.uchannelbooster.activities.MainActivity;
+import com.moutamid.uchannelbooster.activities.SplashActivity;
 import com.moutamid.uchannelbooster.ui.subscribe.utilis.Stash;
 import com.moutamid.uchannelbooster.utils.Constants;
 
@@ -118,9 +119,9 @@ public class Window extends ContextWrapper {
 
         cc = Stash.getInt(Constants.COIN);
         coin.setText(cc + "");
-
-        tt = Stash.getInt(Constants.TIME);
-        time.setText(tt + "");
+//TODO
+        tt = 5;
+        time.setText(  "5");
 
         emptyView.setOnClickListener(v -> {
             Toast.makeText(context, "Please finish watching the video before like/subscribe to this video", Toast.LENGTH_SHORT).show();
@@ -128,8 +129,8 @@ public class Window extends ContextWrapper {
 
         back.setOnClickListener(v -> {
             Stash.put(Constants.CHECK, true);
-            Intent intent = new Intent(ctx, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(ctx, SplashActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY|Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             close();
             stopService(new Intent(getApplicationContext(), ForegroundService.class));

@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.moutamid.uchannelbooster.R;
 import com.moutamid.uchannelbooster.databinding.ActivityAddTaskBinding;
+import com.moutamid.uchannelbooster.models.ArrayModel;
 import com.moutamid.uchannelbooster.models.LikeTaskModel;
 import com.moutamid.uchannelbooster.models.UserDetails;
 import com.moutamid.uchannelbooster.models.ViewTaskModel;
@@ -39,7 +40,44 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class AddTaskActivity extends AppCompatActivity {
+
+    private static final String TAG = "AddTaskActivity";
+
+    int totalCostInt = 600;
+    int currentCoinsValue = 0;
+
+    int viewTimeInteger = 60;
+    int taskCutOfAmount = 60;
+    //IF ACTIVITY IS LIKE SUBSCRIBE THEN RETRIEVE ABOVE VALUE FROM DATABASE
+    private Button viewQuantityButton, viewTimeButton, vipDiscountButton,
+            totalCostButton, doneButton;
+
+    private TextView coinsTextView;
+
+    private boolean isVipDiscount = false;
+
+    private YouTubePlayerView youTubePlayerView;
+    private String videoUrl;
+    int viewQuantityInteger = 10;
+    //    private Utils utils = new Utils();
+    String videoType = Constants.TYPE_VIEW;
+
+    Integer[] viewQuantityArrayInt;
+    String[] viewQuantityArray;
+    Integer[] viewTimeArrayInt;
+    String[] viewTimeArray;
+
+    List<Integer> viewQuantityListInt = new ArrayList<>();
+    List<Integer> viewTimeListInt = new ArrayList<>();
+    List<String> viewQuantityListString = new ArrayList<>();
+    List<String> viewTimeListString = new ArrayList<>();
+    List<ArrayModel> viewQuantityListModel = new ArrayList<>();
+    List<ArrayModel> viewTimeListModel = new ArrayList<>();
      ActivityAddTaskBinding binding;
     int CAMPAIGN_SELECTION = Stash.getInt(Constants.CAMPAIGN_SELECTION);
     int CurrentCoins = 0;
@@ -93,6 +131,124 @@ public class AddTaskActivity extends AppCompatActivity {
                         Toast.makeText(AddTaskActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        Constants.databaseReference().child(Constants.ADD_TASK_VARIABLES).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    viewQuantityListInt.clear();
+                    viewTimeListInt.clear();
+                    viewQuantityListString.clear();
+                    viewTimeListString.clear();
+                    viewQuantityListModel.clear();
+                    viewTimeListModel.clear();
+
+                    if (snapshot.child(Constants.TIME_ARRAY).exists()) {
+
+                        for (DataSnapshot dataSnapshot : snapshot.child(Constants.TIME_ARRAY).getChildren()) {
+                            ArrayModel model = new ArrayModel();
+
+                            // Check if the snapshot contains a HashMap
+                            Object value = dataSnapshot.getValue();
+                            if (value instanceof Map) {
+                                Map<String, Object> map = (Map<String, Object>) value;
+                                if (map.containsKey("value")) {
+                                    model.setValue(((Long) map.get("value")).intValue()); // Convert Long to int
+                                }
+                            } else if (value instanceof Long) {
+                                model.setValue(((Long) value).intValue()); // Direct Long to int conversion
+                            }
+                            model.setKey(dataSnapshot.getKey());
+                            viewTimeListModel.add(model);
+                            viewTimeListInt.add(model.getValue());
+                            viewTimeListString.add(String.valueOf(model.getValue()));
+                        }
+
+
+                        viewTimeArrayInt = viewTimeListInt.toArray(new Integer[viewTimeListInt.size()]);
+                        viewTimeArray = viewTimeListString.toArray(new String[viewTimeListString.size()]);
+
+                    } else {
+                        viewTimeArrayInt = new Integer[]{60, 90, 120, 150, 180, 210, 240,
+                                270, 300, 330, 360, 390, 420, 450, 480, 510, 540,
+                                570, 600, 660, 720, 780, 840, 900
+                        };
+                        viewTimeArray = new String[]{"60", "90", "120", "150", "180", "210", "240",
+                                "270", "300", "330", "360", "390", "420", "450", "480", "510", "540",
+                                "570", "600", "660", "720", "780", "840", "900"
+                        };
+                    }
+
+                    if (snapshot.child(Constants.QUANTITY_ARRAY).exists()) {
+                        for (DataSnapshot dataSnapshot : snapshot.child(Constants.QUANTITY_ARRAY).getChildren()) {
+                            ArrayModel model = new ArrayModel();
+
+                            // Check the type of the value before converting
+                            Object value = dataSnapshot.getValue();
+
+                            if (value instanceof Map) {
+                                Map<String, Object> map = (Map<String, Object>) value;
+                                if (map.containsKey("value")) {
+                                    model.setValue(((Long) map.get("value")).intValue()); // Convert Long to int
+                                }
+                            } else if (value instanceof Long) {
+                                model.setValue(((Long) value).intValue()); // Direct Long to int conversion
+                            }
+
+                            model.setKey(dataSnapshot.getKey());
+                            viewQuantityListModel.add(model);
+
+                            viewQuantityListInt.add(model.getValue());
+
+                            viewQuantityListString.add(String.valueOf(model.getValue()));
+                        }
+
+
+                        viewQuantityArrayInt = viewQuantityListInt.toArray(new Integer[viewQuantityListInt.size()]);
+                        viewQuantityArray = viewQuantityListString.toArray(new String[viewQuantityListString.size()]);
+
+                    } else {
+                        viewQuantityArrayInt = new Integer[]{10, 20, 30, 40, 50,
+                                100, 150, 200, 250, 300, 350, 400, 450, 500, 550,
+                                600, 700, 800, 900, 1000, 1500, 2000, 2500,
+                                3000, 3500, 4000, 4500, 5000
+                        };
+                        viewQuantityArray = new String[]{"10", "20", "30", "40", "50",
+                                "100", "150", "200", "250", "300", "350", "400", "450", "500", "550",
+                                "600", "700", "800", "900", "1000", "1500", "2000", "2500",
+                                "3000", "3500", "4000", "4500", "5000"
+                        };
+
+                    }
+
+                } else {
+                    viewQuantityArrayInt = new Integer[]{10, 20, 30, 40, 50,
+                            100, 150, 200, 250, 300, 350, 400, 450, 500, 550,
+                            600, 700, 800, 900, 1000, 1500, 2000, 2500,
+                            3000, 3500, 4000, 4500, 5000
+                    };
+                    viewQuantityArray = new String[]{"10", "20", "30", "40", "50",
+                            "100", "150", "200", "250", "300", "350", "400", "450", "500", "550",
+                            "600", "700", "800", "900", "1000", "1500", "2000", "2500",
+                            "3000", "3500", "4000", "4500", "5000"
+                    };
+                    viewTimeArrayInt = new Integer[]{60, 90, 120, 150, 180, 210, 240,
+                            270, 300, 330, 360, 390, 420, 450, 480, 510, 540,
+                            570, 600, 660, 720, 780, 840, 900
+                    };
+                    viewTimeArray = new String[]{"60", "90", "120", "150", "180", "210", "240",
+                            "270", "300", "330", "360", "390", "420", "450", "480", "510", "540",
+                            "570", "600", "660", "720", "780", "840", "900"
+                    };
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         binding.coin.setText(CurrentCoins+"");
 
@@ -107,9 +263,9 @@ public class AddTaskActivity extends AppCompatActivity {
 //            binding.likesLayout.setVisibility(View.GONE);
 //            binding.viewsLayout.setVisibility(View.GONE);
 //
-//            binding.pickerSubAll.setText(Constants.subsQuantityArray[pickedSub]);
-//            binding.likeAll.setText(Constants.subsQuantityArray[pickedSub]);
-//            binding.viewsAll.setText(Constants.subsQuantityArray[pickedSub]);
+//            binding.pickerSubAll.setText(viewQuantityArray[pickedSub]);
+//            binding.likeAll.setText(viewQuantityArray[pickedSub]);
+//            binding.viewsAll.setText(viewQuantityArray[pickedSub]);
 
             totalCost = ((300 * pickedSubTime) + subDefault );
             holderSub = totalCost;
@@ -125,7 +281,16 @@ public class AddTaskActivity extends AppCompatActivity {
 //            binding.likesLayout.setVisibility(View.GONE);
 //            binding.viewsLayout.setVisibility(View.VISIBLE);
 
-            totalCost = Integer.valueOf(Constants.viewQuantityArray[pickedView]) * Integer.valueOf(Constants.viewTimeArray[pickedViewTime]);
+            if (viewQuantityArray != null && viewTimeArray != null
+                    && pickedView >= 0 && pickedView < viewQuantityArray.length
+                    && pickedViewTime >= 0 && pickedViewTime < viewTimeArray.length) {
+
+                totalCost = Integer.parseInt(viewQuantityArray[pickedView])
+                        * Integer.parseInt(viewTimeArray[pickedViewTime]);
+            } else {
+                Log.e("Error", "viewQuantityArray or viewTimeArray is null, or index out of bounds!");
+                totalCost = 0;
+            }
 
             if (VIP_STATUS){
                 totalCost = totalCost - (totalCost * discount);
@@ -133,7 +298,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
             binding.totalCoins.setText(""+totalCost);
 
-            binding.pickerViews.setText("50");
+            binding.pickerViews.setText("0");
         } else if (CAMPAIGN_SELECTION == 2){
 //            binding.allLayout.setVisibility(View.GONE);
 //            binding.likesLayout.setVisibility(View.VISIBLE);
@@ -219,8 +384,8 @@ public class AddTaskActivity extends AppCompatActivity {
 
                                             task1.setVideoUrl(url);
                                             task1.setThumbnailUrl(thumbnailUrl);
-                                            task1.setTotalViewsQuantity(Constants.viewQuantityArray[pickedView]);
-                                            task1.setTotalViewTimeQuantity(Constants.viewTimeArray[pickedViewTime]);
+                                            task1.setTotalViewsQuantity(viewQuantityArray[pickedView]);
+                                            task1.setTotalViewTimeQuantity(viewTimeArray[pickedViewTime]);
                                             task1.setCompletedDate("error");
                                             task1.setCurrentViewsQuantity(0);
                                             task1.setPosterUid(Constants.auth().getCurrentUser().getUid());
@@ -284,9 +449,9 @@ public class AddTaskActivity extends AppCompatActivity {
                                             LikeTaskModel task1 = new LikeTaskModel();
                                             task1.setVideoUrl(url);
                                             task1.setThumbnailUrl(thumbnailUrl);
-                                            task1.setTotalLikesQuantity(Constants.subsQuantityArray[pickedLike]);
+                                            task1.setTotalLikesQuantity(viewQuantityArray[pickedLike]);
                                             task1.setCompletedDate("error");
-                                            task1.setTotalViewTimeQuantity(Constants.likeTimeArray[pickedLikeTime]);
+                                            task1.setTotalViewTimeQuantity(viewTimeArray[pickedLikeTime]);
                                             task1.setCurrentLikesQuantity(0);
                                             task1.setPosterUid(Constants.auth().getCurrentUser().getUid());
                                             task1.setTaskKey(key);
@@ -349,9 +514,9 @@ public class AddTaskActivity extends AppCompatActivity {
                                             SubscribeTaskModel task1 = new SubscribeTaskModel();
                                             task1.setVideoUrl(url);
                                             task1.setThumbnailUrl(thumbnailUrl);
-                                            task1.setTotalSubscribesQuantity(Constants.subsQuantityArray[pickedSub]);
+                                            task1.setTotalSubscribesQuantity(viewQuantityArray[pickedSub]);
                                             task1.setCompletedDate("error");
-                                            task1.setTotalViewTimeQuantity(Constants.subTimeArray[pickedSubTime]);
+                                            task1.setTotalViewTimeQuantity(viewTimeArray[pickedSubTime]);
                                             task1.setCurrentSubscribesQuantity(0);
                                             task1.setPosterUid(Constants.auth().getCurrentUser().getUid());
                                             task1.setTaskKey(key);
@@ -402,8 +567,8 @@ public class AddTaskActivity extends AppCompatActivity {
         NumberPicker picker = dialog.findViewById(R.id.picker);
 
         picker.setMinValue(0);
-        picker.setMaxValue(Constants.viewQuantityArray.length-1);
-        picker.setDisplayedValues(Constants.viewQuantityArray);
+        picker.setMaxValue(viewQuantityArray.length-1);
+        picker.setDisplayedValues(viewQuantityArray);
         picker.setValue(pickedView);
 
         title.setText("EXPECTED VIEWS");
@@ -416,7 +581,7 @@ public class AddTaskActivity extends AppCompatActivity {
             dialog.dismiss();
             binding.pickerViews.setText(picked);
 
-            totalCost = Integer.parseInt(picked) * Integer.parseInt(Constants.viewTimeArray[pickedViewTime]);
+            totalCost = Integer.parseInt(picked) * Integer.parseInt(viewTimeArray[pickedViewTime]);
             if (VIP_STATUS){
                 totalCost = totalCost - (totalCost * discount);
             }
@@ -441,18 +606,18 @@ public class AddTaskActivity extends AppCompatActivity {
 
         if (CAMPAIGN_SELECTION == 0){
             picker.setMinValue(0);
-            picker.setMaxValue(Constants.subTimeArray.length-1);
-            picker.setDisplayedValues(Constants.subTimeArray);
+            picker.setMaxValue(viewTimeArray.length-1);
+            picker.setDisplayedValues(viewTimeArray);
             picker.setValue(pickedSubTime);
         } if (CAMPAIGN_SELECTION == 1) {
             picker.setMinValue(0);
-            picker.setMaxValue(Constants.viewTimeArray.length-1);
-            picker.setDisplayedValues(Constants.viewTimeArray);
+            picker.setMaxValue(viewTimeArray.length-1);
+            picker.setDisplayedValues(viewTimeArray);
             picker.setValue(pickedViewTime);
         } if (CAMPAIGN_SELECTION == 2) {
             picker.setMinValue(0);
-            picker.setMaxValue(Constants.likeTimeArray.length-1);
-            picker.setDisplayedValues(Constants.likeTimeArray);
+            picker.setMaxValue(viewTimeArray.length-1);
+            picker.setDisplayedValues(viewTimeArray);
             picker.setValue(pickedLikeTime);
         }
 
@@ -475,7 +640,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 holderSub = totalCost;
             } if (CAMPAIGN_SELECTION == 1) {
                 pickedViewTime = picker.getValue();
-                totalCost = Integer.valueOf(picked) * Integer.valueOf(Constants.viewQuantityArray[pickedView]);
+                totalCost = Integer.valueOf(picked) * Integer.valueOf(viewQuantityArray[pickedView]);
             } if (CAMPAIGN_SELECTION == 2) {
                 pickedLikeTime = picker.getValue();
                 if (pickedLike == 0){
@@ -513,8 +678,8 @@ public class AddTaskActivity extends AppCompatActivity {
         NumberPicker picker = dialog.findViewById(R.id.picker);
 
         picker.setMinValue(0);
-        picker.setMaxValue(Constants.subsQuantityArray.length-1);
-        picker.setDisplayedValues(Constants.subsQuantityArray);
+        picker.setMaxValue(viewQuantityArray.length-1);
+        picker.setDisplayedValues(viewQuantityArray);
         picker.setValue(pickedLike);
 
         title.setText("EXPECTED LIKES");
@@ -551,8 +716,8 @@ public class AddTaskActivity extends AppCompatActivity {
         NumberPicker picker = dialog.findViewById(R.id.picker);
 
         picker.setMinValue(0);
-        picker.setMaxValue(Constants.subsQuantityArray.length-1);
-        picker.setDisplayedValues(Constants.subsQuantityArray);
+        picker.setMaxValue(viewQuantityArray.length-1);
+        picker.setDisplayedValues(viewQuantityArray);
         picker.setValue(pickedSub);
 
         title.setText("EXPECTED SUBSCRIBER");

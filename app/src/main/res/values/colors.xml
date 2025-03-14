@@ -6,7 +6,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="accentColor">#FF3E3E</color>
     <!--    <color name="accentColor">#EC1C24</color><-->
-
+    <color name="app_color">#166D71</color>
+    <color name="green_color">#000000</color>
+    <color name="pink_color">#F59FC1</color>
+    <color name="textColor">#FF000000</color>
+    <color name="grey_light">#F1EDEE</color>
+    <color name="dark_gray">#7A7676</color>
+    <color name="light_gray">#DEDEDE</color>
+    <color name="green">#00E880</color>
+    <color name="greenDark">#00D777</color>
+    <color name="greenLight">#99EFC9</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#00ffffff</color>
     <color name="black">#000000</color>

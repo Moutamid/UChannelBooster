@@ -6,6 +6,7 @@ import static com.bumptech.glide.load.engine.DiskCacheStrategy.DATA;
 
 import android.Manifest;
 import android.accounts.AccountManager;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -21,13 +22,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -107,6 +112,7 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
     boolean isTimerRunning = false;
     int isError = 0;
     ArrayList<String> linkList = new ArrayList<>();
+    boolean default_image = false;
 
     public LikeFragment() {
         // Required empty public constructor
@@ -131,6 +137,7 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         imageList.add(new SlideModel(dataSnapshot.child("link").getValue(String.class), "", ScaleTypes.CENTER_INSIDE));
+                        default_image = false;
 
                         if (dataSnapshot.child("click").exists())
                             linkList.add(dataSnapshot.child("click").getValue(String.class));
@@ -138,11 +145,13 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
                     }
 
                 } else {
-                    imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
-                    imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
+                    default_image = true;
+
                     imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
                 }
-
+                if (!default_image) {
+                    imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
+                }
                 binding.imageSliderLike.setImageList(imageList);
 
             }
@@ -152,7 +161,13 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
 
             }
         });
-
+        binding.autoPlaySwitchLike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Stash.put(Constants.likeSwitchState, b);
+                Stash.put(Constants.subscribeSwitchState, false);
+            }
+        });
         Constants.databaseReference().child(Constants.LIKE_TASKS).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -167,6 +182,8 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
 //                        model.setSubscribed(true);
 //                        } else {
                         likeTaskModelArrayList.add(model);
+                        Stash.put(Constants.likeTaskModelArrayList, likeTaskModelArrayList);
+
 //                        }
 
 
@@ -200,28 +217,54 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
                         requireContext().getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
 
-        binding.otherBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                currentCounter++;
+        binding.otherBtn.setOnClickListener(view -> {
+            ArrayList<LikeTaskModel> likeTaskModelArrayList = Stash.getArrayList(Constants.likeTaskModelArrayList, LikeTaskModel.class);
+            int currentCountervalue = Stash.getInt(Constants.LIKE_COUNTER_VALUE, 0);
+            currentCountervalue++;
+            if (currentCountervalue >= likeTaskModelArrayList.size()) {
+                Toast.makeText(requireContext(), "End of task", Toast.LENGTH_SHORT).show();
 
-                if (currentCounter >= likeTaskModelArrayList.size()) {
-                    Toast.makeText(requireContext(), "End Of Task!", Toast.LENGTH_SHORT).show();
-                } else {
-                    int rlow = Integer.parseInt(likeTaskModelArrayList.get(currentCounter).getTotalViewTimeQuantity());
-                    currentPoints = rlow / 10;
-                    Stash.put(Constants.COIN, currentPoints);
-                    setDataOnViews(currentCounter, false);
-                }
+            } else {
+
+                int rloww = Integer.parseInt(likeTaskModelArrayList.get(currentCountervalue).getTotalViewTimeQuantity());
+                currentPoints = rloww - (rloww / 10);
+                Stash.put(Constants.COIN, currentPoints);
+                setDataOnViews(currentCountervalue, false);
+                Stash.put(Constants.LIKE_COUNTER_VALUE, currentCountervalue);
 
             }
+
         });
+
+
+//        binding.otherBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                currentCounter++;
+//
+//                if (currentCounter >= likeTaskModelArrayList.size()) {
+//                    Toast.makeText(requireContext(), "End Of Task!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    int rlow = Integer.parseInt(likeTaskModelArrayList.get(currentCounter).getTotalViewTimeQuantity());
+//                    currentPoints = rlow / 10;
+//                    Stash.put(Constants.COIN, currentPoints);
+//                    setDataOnViews(currentCounter, false);
+//                }
+//
+//            }
+//        });
 
         //--------------------------------------------------------------------------------------------
         binding.likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                likeUserToVideo();
+                try {
+                    likeVideo();
+                } catch (GeneralSecurityException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -644,47 +687,43 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
     }
 
     private void likeVideo() throws GeneralSecurityException, IOException {
-        HttpTransport transport = AndroidHttp.newCompatibleTransport();
-        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-        YouTube youtubeService = new com.google.api.services.youtube.YouTube.Builder(
-                transport, jsonFactory, mCredential)
-                .setApplicationName("YouTube Data API Android Quickstart")
-                .build();
-
-        YouTube.Videos.Rate request = youtubeService.videos()
-                .rate(currentVideoId, "like");
+//        HttpTransport transport = AndroidHttp.newCompatibleTransport();
+//        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+//        YouTube youtubeService = new com.google.api.services.youtube.YouTube.Builder(
+//                transport, jsonFactory, mCredential)
+//                .setApplicationName("YouTube Data API Android Quickstart")
+//                .build();
+//
+//        YouTube.Videos.Rate request = youtubeService.videos()
+//                .rate(currentVideoId, "like");
 
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
 
-                    request.execute();
-                    requireActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+//                    request.execute();
+                requireActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 //                            Log.d(TAG, response.toString());
-                            if (checkOverlayPermission()) {
-                                startService();
-                                String url = currentVideoLink;
-                                Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + Constants.getVideoId(url)));
-                                Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse("http://www.youtube.com/watch?v=" + Constants.getVideoId(url)));
+                        if (checkOverlayPermission()) {
+                            startService();
+                            String url = currentVideoLink;
+                            Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + Constants.getVideoId(url)));
+                            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse("http://www.youtube.com/watch?v=" + Constants.getVideoId(url)));
 
-                                try {
-                                    requireContext().startActivity(appIntent);
-                                } catch (ActivityNotFoundException ex) {
-                                    requireContext().startActivity(webIntent);
-                                }
+                            try {
+                                requireContext().startActivity(appIntent);
+                            } catch (ActivityNotFoundException ex) {
+                                requireContext().startActivity(webIntent);
                             }
+                        }
 //                            Toast.makeText(MainActivity.this, "Liked", Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    }
+                });
             }
         }).start();
 
@@ -833,10 +872,70 @@ public class LikeFragment extends Fragment implements EasyPermissions.Permission
     @Override
     public void onResume() {
         super.onResume();
-        boolean check = Stash.getBoolean(Constants.CHECK, false);
-        if (check & !likeTaskModelArrayList.isEmpty()) {
-            uploadAddedLikers();
-        }
+//        boolean check = Stash.getBoolean(Constants.CHECK, false);
+//        if (check & !likeTaskModelArrayList.isEmpty()) {
+//            uploadAddedLikers();
+//        }
+        boolean auto = Stash.getBoolean(Constants.likeSwitchState, false);
+        binding.autoPlaySwitchLike.setChecked(auto);
+//
+
+        if (auto) {
+            showCountdownDialog();
+
+//            b.seeOther.performClick()
+
+        }    }
+    public void showCountdownDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        LayoutInflater inflater = LayoutInflater.from(requireContext());
+        View view = inflater.inflate(R.layout.countdown_dialog, null);
+        builder.setView(view);
+
+        TextView countdownText = view.findViewById(R.id.countdownText);
+        Switch autoplaySwitch = view.findViewById(R.id.autoplaySwitch);
+        autoplaySwitch.setChecked(Stash.getBoolean(Constants.likeSwitchState));
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Countdown Logic
+        Handler handler = new Handler(Looper.getMainLooper());
+        int[] counter = {5}; // Start countdown from 3
+
+        Runnable countdownRunnable = new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<LikeTaskModel> list = Stash.getArrayList(Constants.likeTaskModelArrayList, LikeTaskModel.class);
+                int currentCountervalue = Stash.getInt(Constants.LIKE_COUNTER_VALUE, 0);
+                currentCountervalue++;
+                Log.d("dataaaa", currentCountervalue + "====" + list.size() + "====" + "=====" +  currentVideoLink);
+
+                if (currentCountervalue < list.size()) {
+                    setDataOnViews(currentCountervalue, false);
+                }
+                if (counter[0] > 0) {
+                    countdownText.setText(counter[0] + "");
+                    counter[0]--;
+                    handler.postDelayed(this, 1000); // 1-second interval
+                } else {
+                    dialog.dismiss(); // Close the dialog
+                    boolean isAutoplayOn = autoplaySwitch.isChecked();
+                    Stash.put(Constants.likeSwitchState, isAutoplayOn);
+                    if (isAutoplayOn) {
+                        Log.d("dataaaa", currentCountervalue + "====" + list.size() + "====" + "=====" +  currentVideoLink);
+                        if (currentCountervalue >= list.size()) {
+                            Toast.makeText(requireContext(), "End of task", Toast.LENGTH_SHORT).show();
+                        } else {
+                            currentVideoLink = list.get(currentCountervalue).getVideoUrl();
+                            Stash.put(Constants.LIKE_COUNTER_VALUE, currentCountervalue);
+                            binding.likeBtn.performClick();
+                        }
+                    }
+                }
+            }
+        };
+
+        handler.post(countdownRunnable);
     }
 
 }

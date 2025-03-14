@@ -229,7 +229,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@color/red"
-                        android:text="10"
+                        android:text="0"
                         android:textColor="@color/white" />
 
                 </RelativeLayout>
@@ -261,7 +261,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@color/red"
-                        android:text="60"
+                        android:text="0"
                         android:textColor="@color/white" />
 
                 </RelativeLayout>

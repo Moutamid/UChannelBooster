@@ -2,7 +2,6 @@ package com.moutamid.uchannelbooster.ui.view;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -12,12 +11,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
@@ -28,6 +21,11 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
@@ -74,6 +72,7 @@ public class ViewFragment extends Fragment {
     YouTubePlayerView youTubePlayerView;
     View customPlayerUi;
     ArrayList<String> linkList = new ArrayList<>();
+    boolean default_image = false;
 
     public ViewFragment() {
         // Required empty public constructor
@@ -99,18 +98,19 @@ public class ViewFragment extends Fragment {
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         imageList.add(new SlideModel(dataSnapshot.child("link").getValue(String.class), "", ScaleTypes.CENTER_INSIDE));
-
+                        default_image = false;
                         if (dataSnapshot.child("click").exists())
                             linkList.add(dataSnapshot.child("click").getValue(String.class));
                         else linkList.add("google.com");
                     }
 
                 } else {
-                    imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
-                    imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
+                    default_image = true;
                     imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
                 }
-
+                if (!default_image) {
+                    imageList.add(new SlideModel(R.drawable.mask_group, "", ScaleTypes.CENTER_INSIDE));
+                }
                 binding.imageSlider.setImageList(imageList);
 
             }
@@ -141,22 +141,22 @@ public class ViewFragment extends Fragment {
 
         binding.switchAuto.setChecked(Stash.getBoolean(Constants.isAutoPlayEnabled, false));
 
-        binding.switchAuto.setOnClickListener(v -> {
-            if (!VIP_STATUS) {
-                binding.switchAuto.setChecked(false);
-                new AlertDialog.Builder(requireContext())
-                        .setTitle("VIP account")
-                        .setMessage("You need to upgrade to a vip account to use this function.")
-                        .setNegativeButton("CANCEL", (dialog, which) -> dialog.dismiss())
-                        .setPositiveButton("UPGRADE", (dialog, which) -> {
-//                            startActivity(new Intent(requireContext(), VIPActivity.class));
-//                            requireActivity().finish();
-                        })
-                        .show();
-            } else {
-                //binding.switchAuto.setChecked(true);
-            }
-        });
+//        binding.switchAuto.setOnClickListener(v -> {
+//            if (!VIP_STATUS) {
+//                binding.switchAuto.setChecked(false);
+//                new AlertDialog.Builder(requireContext())
+//                        .setTitle("VIP account")
+//                        .setMessage("You need to upgrade to a vip account to use this function.")
+//                        .setNegativeButton("CANCEL", (dialog, which) -> dialog.dismiss())
+//                        .setPositiveButton("UPGRADE", (dialog, which) -> {
+////                            startActivity(new Intent(requireContext(), VIPActivity.class));
+////                            requireActivity().finish();
+//                        })
+//                        .show();
+//            } else {
+        //binding.switchAuto.setChecked(true);
+//            }
+//        });
 
 
 //        binding.seeOther.setOnClickListener(v -> {
@@ -189,10 +189,10 @@ public class ViewFragment extends Fragment {
         binding.switchAuto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (VIP_STATUS) {
-                    isAutoPlayEnabled = isChecked;
-                    Stash.put(Constants.isAutoPlayEnabled, isChecked);
-                }
+//                if (VIP_STATUS) {
+                isAutoPlayEnabled = isChecked;
+                Stash.put(Constants.isAutoPlayEnabled, isChecked);
+//                }
             }
         });
 
@@ -203,10 +203,10 @@ public class ViewFragment extends Fragment {
                     taskArrayList.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Taskk tasks = dataSnapshot.getValue(Taskk.class);
-                        if (!Constants.auth().getCurrentUser().getUid().equals(tasks.getPosterUid())){
+                        if (!Constants.auth().getCurrentUser().getUid().equals(tasks.getPosterUid())) {
                             if (!snapshot.child(tasks.getTaskKey()).child(Constants.VIEWER_PATH).child(Constants.auth().getCurrentUser().getUid()).exists()) {
-                                if (tasks.getCompletedDate() != null){
-                                    if (tasks.getCompletedDate().equals("error")){
+                                if (tasks.getCompletedDate() != null) {
+                                    if (tasks.getCompletedDate().equals("error")) {
                                         taskArrayList.add(tasks);
                                     }
                                 }
@@ -219,7 +219,7 @@ public class ViewFragment extends Fragment {
                         initYoutubePlayer(videoUrl);
                         int rlow = Integer.parseInt(taskArrayList.get(currentPosition).getTotalViewTimeQuantity());
                         currentPoints = rlow - (rlow / 10);
-                        binding.currentPoint.setText(currentPoints+"");
+                        binding.currentPoint.setText(currentPoints + "");
                         Stash.put(Constants.COIN, currentPoints);
                     } else {
                         Toast.makeText(requireContext(), "No video Found", Toast.LENGTH_SHORT).show();
@@ -252,9 +252,9 @@ public class ViewFragment extends Fragment {
                 youTubePlayer.addListener(customPlayerUiController);
 
                 if (Stash.getBoolean(Constants.isAutoPlayEnabled, false)) {
-                    youTubePlayer.loadVideo( Constants.getVideoId(url), 0f);
+                    youTubePlayer.loadVideo(Constants.getVideoId(url), 0f);
                 } else {
-                    youTubePlayer.cueVideo( Constants.getVideoId(url), 0f);
+                    youTubePlayer.cueVideo(Constants.getVideoId(url), 0f);
                 }
             }
         };
@@ -275,7 +275,7 @@ public class ViewFragment extends Fragment {
         int rlow = Integer.parseInt(taskArrayList.get(currentPosition).getTotalViewTimeQuantity());
         currentPoints = rlow - (rlow / 10);
         Stash.put(Constants.COIN, currentPoints);
-        binding.currentPoint.setText(currentPoints+"");
+        binding.currentPoint.setText(currentPoints + "");
         binding.currentSec.setText(taskArrayList.get(currentPosition).getTotalViewTimeQuantity());
     }
 
@@ -294,7 +294,7 @@ public class ViewFragment extends Fragment {
     private void setNewVideoPlayerDetails() {
         String url = getNextUrl();
 
-        if (url != null){
+        if (url != null) {
             //binding.youtubePlayerViewFragmentView.release();
 
             YouTubePlayerView youTubePlayerView = binding.youtubePlayerViewFragmentView;
@@ -306,9 +306,9 @@ public class ViewFragment extends Fragment {
                     CustomPlayerUiController customPlayerUiController = new CustomPlayerUiController(requireContext(), customPlayerUi, youTubePlayer, youTubePlayerView);
                     youTubePlayer.addListener(customPlayerUiController);
                     if (Stash.getBoolean(Constants.isAutoPlayEnabled, false)) {
-                        youTubePlayer.loadVideo( Constants.getVideoId(url), 0f);
+                        youTubePlayer.loadVideo(Constants.getVideoId(url), 0f);
                     } else {
-                        youTubePlayer.cueVideo( Constants.getVideoId(url), 0f);
+                        youTubePlayer.cueVideo(Constants.getVideoId(url), 0f);
                     }
                 }
             });
@@ -316,7 +316,7 @@ public class ViewFragment extends Fragment {
 
             int rlow = Integer.parseInt(taskArrayList.get(currentPosition).getTotalViewTimeQuantity());
             currentPoints = rlow - (rlow / 10);
-            binding.currentPoint.setText(currentPoints+"");
+            binding.currentPoint.setText(currentPoints + "");
             Stash.put(Constants.COIN, currentPoints);
             binding.currentSec.setText(taskArrayList.get(currentPosition).getTotalViewTimeQuantity());
 
@@ -337,7 +337,7 @@ public class ViewFragment extends Fragment {
     }
 
     private String getNextUrl() {
-        if (currentPosition < taskArrayList.size()-1) {
+        if (currentPosition < taskArrayList.size() - 1) {
             currentPosition = currentPosition + 1;
             return taskArrayList.get(currentPosition).getVideoUrl();
         } else {
@@ -388,7 +388,7 @@ public class ViewFragment extends Fragment {
     }
 
     private void uploadAddedVideoViews() {
-        if (taskArrayList.size()>0) {
+        if (taskArrayList.size() > 0) {
             Log.d("ResponseURL", "if");
             progressDialog.show();
             Constants.databaseReference().child(Constants.VIEW_TASKS)
@@ -553,17 +553,19 @@ public class ViewFragment extends Fragment {
             else if (state == PlayerConstants.PlayerState.BUFFERING)
                 panel.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent));
         }
+
         int dur = 00;
 
         @Override
         public void onError(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerError playerError) {
             setNewVideoPlayerDetails();
         }
+
         @SuppressLint("SetTextI18n")
         @Override
         public void onCurrentSecond(@NonNull YouTubePlayer youTubePlayer, float v) {
             progressbar.setProgress(Math.round(v));
-            videoDurationTextView.setText(Math.round(v)+":"+dur);
+            videoDurationTextView.setText(Math.round(v) + ":" + dur);
             showToastOnDifferentSec(Math.round(v));
 
             if (Math.round(v) == 5) {
@@ -577,9 +579,9 @@ public class ViewFragment extends Fragment {
                             youTubePlayer1.addListener(customPlayerUiController);
 
                             if (Stash.getBoolean(Constants.isAutoPlayEnabled, false)) {
-                                youTubePlayer.loadVideo( Constants.getVideoId(url), 0f);
+                                youTubePlayer.loadVideo(Constants.getVideoId(url), 0f);
                             } else {
-                                youTubePlayer.cueVideo( Constants.getVideoId(url), 0f);
+                                youTubePlayer.cueVideo(Constants.getVideoId(url), 0f);
                             }
 
 //                            YouTubePlayerUtils.loadOrCueVideo(
@@ -592,7 +594,7 @@ public class ViewFragment extends Fragment {
                         setNewVideoPlayerDetails();
                     }
                 } else {
-                    if (checkOverlayPermission()){
+                    if (checkOverlayPermission()) {
                         startService();
                         String url = taskArrayList.get(currentPosition).getVideoUrl();
                         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + Constants.getVideoId(url)));
@@ -612,12 +614,14 @@ public class ViewFragment extends Fragment {
         @Override
         public void onVideoDuration(@NonNull YouTubePlayer youTubePlayer, float v) {
             dur = Math.round(v);
-            videoDurationTextView.setText("00:"+dur);
+            videoDurationTextView.setText("00:" + dur);
             currentVideoLength = Math.round(v);
             int s = 0;
             try {
                 s = Integer.parseInt(binding.currentSec.getText().toString());
-            } catch (Exception e) {e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 //            binding.progressIndicator.setMax(s);
             Stash.put(Constants.TIME, s);
 
@@ -626,7 +630,7 @@ public class ViewFragment extends Fragment {
 
     }
 
-    public boolean checkOverlayPermission(){
+    public boolean checkOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(requireContext())) {
                 // send user to the device settings
@@ -647,8 +651,8 @@ public class ViewFragment extends Fragment {
         return true;
     }
 
-    public void startService(){
-        if(Settings.canDrawOverlays(requireContext())) {
+    public void startService() {
+        if (Settings.canDrawOverlays(requireContext())) {
             // start the service based on the android version
             Intent i = new Intent(requireContext(), ForegroundService.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
