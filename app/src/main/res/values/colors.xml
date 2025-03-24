@@ -38,5 +38,6 @@
     <color name="light_red">#FF4040</color>
     <color name="dark_grey">#212121</color>
     <color name="light_grey">#E0E0E0</color>
+    <color name="blueDark">#1F2C77</color>
 
 </resources>

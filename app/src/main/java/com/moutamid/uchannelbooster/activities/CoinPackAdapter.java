@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moutamid.uchannelbooster.R;
 import com.moutamid.uchannelbooster.models.CoinPack;
+import com.moutamid.uchannelbooster.ui.subscribe.utilis.Stash;
 
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class CoinPackAdapter extends RecyclerView.Adapter<CoinPackAdapter.ViewHo
         holder.priceTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stash.put("coins",coinPack.getCoins()+"");
+                Stash.put("amount",coinPack.getPrice()+"");
                 context.startActivity(new Intent(context, SubscriptionActivity.class));
             }
         });

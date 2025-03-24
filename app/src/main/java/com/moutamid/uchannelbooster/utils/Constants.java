@@ -125,7 +125,7 @@ public class Constants {
     public static final String likeSwitchState = "likeSwitchState";
     public static final String COUNTER_VALUE = "COUNTER_VALUE";
     public static final String LIKE_COUNTER_VALUE = "LIKE_COUNTER_VALUE";
-    public static final String COURSE_PAYMENTS = "Payments";
+    public static final String PAYMENTS = "Payments";
 
 
     public static FirebaseAuth auth() {
